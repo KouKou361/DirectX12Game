@@ -1,0 +1,1023 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Lib">
+      <UniqueIdentifier>{e974c45f-3b28-419d-81d1-0ae26ee3fb9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{f4b5e76a-24dd-4756-b950-2dcfcc6047c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\Header">
+      <UniqueIdentifier>{9052b61f-5382-426f-88cd-1ce32e9c1c3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\Source">
+      <UniqueIdentifier>{6265cb75-6bb0-4abf-86a3-8fefae098a91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\Header\Sprite">
+      <UniqueIdentifier>{446c9dd2-d9b1-483f-bf23-274c8fe3335d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\Source\Sprite">
+      <UniqueIdentifier>{99aa99d7-16ec-4a5f-86cc-a493722ecc32}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\Shader">
+      <UniqueIdentifier>{925fb059-21ed-4fe2-b5c0-12eacf06ad3a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\Header\Model">
+      <UniqueIdentifier>{6156c9ac-d223-492e-9bae-c3a79a75e886}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\Source\Model">
+      <UniqueIdentifier>{3fee5673-f6ca-4e81-9393-57343f87678e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\Header\ModelShader">
+      <UniqueIdentifier>{51a12751-3d8f-47e5-a7f5-54f27defbc78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\Header\SpriteShader">
+      <UniqueIdentifier>{6b59f132-26b5-411a-b06c-a15b920d7576}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\Shader\Font">
+      <UniqueIdentifier>{47898ec4-66c3-4534-a54b-4192a2a6f274}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\Shader\Lambert">
+      <UniqueIdentifier>{94b5f671-ae99-4fa1-a095-c680430223be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\Shader\Plane">
+      <UniqueIdentifier>{a7b9e9b1-c747-47d4-a2ac-3a0d84f073e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\Shader\Sprite">
+      <UniqueIdentifier>{fc757a16-b09c-4942-9f52-6acfb509ba9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\Shader\SpriteDebug">
+      <UniqueIdentifier>{c597e87c-f12c-4fff-a541-c33365077db6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\Source\ModelShader">
+      <UniqueIdentifier>{b8f6f081-4c74-4582-9aba-04933430d95e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\Source\Sprite\SpriteShader">
+      <UniqueIdentifier>{0bf71e15-c4ad-4411-80f5-bcd79a3c2c85}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\Source\Sprite\SpriteDebug">
+      <UniqueIdentifier>{dda7473b-4e4c-4412-aa80-67dd4cebb8fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Imgui">
+      <UniqueIdentifier>{6868dd24-1893-4c92-b25f-601fa1c1e3df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\Header\Audio">
+      <UniqueIdentifier>{a5ae2463-9659-4c3c-818b-6d386b61672a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\Source\Audio">
+      <UniqueIdentifier>{d65ecc6c-f8d4-4f01-9336-7d5c853a5f44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\Shader\Geometry">
+      <UniqueIdentifier>{567332cd-3a9c-4710-8c47-e0a0c8a271ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\Shader\CreateShadowMap">
+      <UniqueIdentifier>{89f90eb8-1bed-41f0-82d8-3e448f229640}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\Shader\NormalShadowMap">
+      <UniqueIdentifier>{9a10f166-26bf-4f91-a4a4-849c6019a676}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\Shader\CascadedShadowRenderer">
+      <UniqueIdentifier>{2d1a2d48-32f1-49d7-8bbc-bf8c95892a48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\Shader\CreateCascadedShadowRenderer">
+      <UniqueIdentifier>{0ddbc610-51d3-492a-bf23-de0289f63a15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\Shader\PointSprite">
+      <UniqueIdentifier>{143b7c48-015e-409b-8da8-8780c18c5747}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\Header\GeometrySprite">
+      <UniqueIdentifier>{f2476f28-be74-46b0-beac-04cc8cba73ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\Source\GeometrySprite">
+      <UniqueIdentifier>{c2a384a4-fd6d-46ad-ac12-e602a171dd44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\Source\MeshInstance">
+      <UniqueIdentifier>{dfd83401-7c72-4f60-99a7-32393b597af2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\Header\Input">
+      <UniqueIdentifier>{cd1a2641-2af5-4fb6-8024-2aaf0ee826bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\Source\Input">
+      <UniqueIdentifier>{2262526f-ffa4-4952-bb7d-21976efd07cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Scene">
+      <UniqueIdentifier>{178aa78e-e9d7-4320-98e0-7b7de3237559}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Character">
+      <UniqueIdentifier>{2ef46ce7-ab29-43c6-bd45-544320a68a19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Camera">
+      <UniqueIdentifier>{e374f88e-ec4c-48fd-80bd-6f20b5bb6afb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\Shader\PBR">
+      <UniqueIdentifier>{b723aaf6-ccd4-4ab8-98c2-f16f7f00162c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Nav">
+      <UniqueIdentifier>{dd8057ca-05c9-4a49-a9a0-747650f00d69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Recastnavgation">
+      <UniqueIdentifier>{aed2f9ab-4978-4ffe-8069-91155e5e4925}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Recastnavgation\DebugUtils">
+      <UniqueIdentifier>{7dfbb941-5518-4ef1-a4c4-2e5a5cf9f86d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Recastnavgation\Detour">
+      <UniqueIdentifier>{fe0bb604-a2ac-4f52-ad8c-d721b9951e8c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Recastnavgation\DetourCrowd">
+      <UniqueIdentifier>{299032ec-7acb-490d-bf51-815028183154}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Recastnavgation\DetourTileCache">
+      <UniqueIdentifier>{fd208550-e77e-4870-a4cf-0a4fb71024b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Recastnavgation\Recast">
+      <UniqueIdentifier>{af2c487d-3082-42d1-a46b-983c929ce970}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Recastnavgation\DebugUtils\Include">
+      <UniqueIdentifier>{fa58e1a5-6459-4098-987a-2f10266ad253}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Recastnavgation\Detour\Include">
+      <UniqueIdentifier>{0a89d7cb-2161-40c1-a89f-fef18cda751a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Recastnavgation\DetourCrowd\Include">
+      <UniqueIdentifier>{bafc33a2-9623-4bb0-910e-6ae9b18b323b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Recastnavgation\DetourTileCache\Include">
+      <UniqueIdentifier>{377cdc8a-c402-4729-8bdf-9a0e41ab0379}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Recastnavgation\Recast\Include">
+      <UniqueIdentifier>{ea0c3261-eb70-4498-b37c-3ff4caac95dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Recastnavgation\DebugUtils\Source">
+      <UniqueIdentifier>{fa8911f9-362a-44e6-a11a-96aad7b6a26a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Recastnavgation\Detour\Source">
+      <UniqueIdentifier>{dbb37743-db6f-4d44-9eed-207f03a801f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Recastnavgation\DetourCrowd\Source">
+      <UniqueIdentifier>{857ecd9a-59d6-4f2f-b120-c836ee285914}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Recastnavgation\DetourTileCache\Source">
+      <UniqueIdentifier>{063f769c-dad3-4dd7-a4a8-dc5acccad774}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Recastnavgation\Recast\Source">
+      <UniqueIdentifier>{66fc2728-5f95-434c-81f4-88de9fa06347}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\Shader\NavMesh">
+      <UniqueIdentifier>{2ad2c366-2d75-4178-bf00-7679ee0f067e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Character\Player">
+      <UniqueIdentifier>{9e9111be-bf2d-4c93-afc9-61427f771720}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Character\Enemy">
+      <UniqueIdentifier>{3f8332f0-b391-4a41-8903-1d06aff7cbd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\AI">
+      <UniqueIdentifier>{a8cd6a86-32ac-4423-ae5e-411380ae2d40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\AI\Judge">
+      <UniqueIdentifier>{e44ad20e-b4aa-4b44-9a55-2bc6ff11c035}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\AI\Action">
+      <UniqueIdentifier>{86c8296b-bcc1-401f-b27c-aa5204bdc8c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\AI\Action\Derived">
+      <UniqueIdentifier>{bd180a76-7c10-423b-b5f6-4e308a255d47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Character\Player\State">
+      <UniqueIdentifier>{e484fdd8-8296-48c8-abb1-273f74400496}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Lib\Shader\NoLight">
+      <UniqueIdentifier>{9f9912c5-eda9-4b93-97aa-517935feb308}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\UI">
+      <UniqueIdentifier>{df70bc31-04a7-407f-a994-2c150daebdad}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\Main.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Lib.cpp">
+      <Filter>Lib\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Lib_Graphics.cpp">
+      <Filter>Lib\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Lib_Descriptor.cpp">
+      <Filter>Lib\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Lib_CameraLib.cpp">
+      <Filter>Lib\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Lib_DirectXFunction.cpp">
+      <Filter>Lib\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Lib_Vector.cpp">
+      <Filter>Lib\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Lib_Sprite.cpp">
+      <Filter>Lib\Source\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Lib_SpriteRenderer.cpp">
+      <Filter>Lib\Source\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Lib_Shader.cpp">
+      <Filter>Lib\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Lib_ModelResource.cpp">
+      <Filter>Lib\Source\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Lib_Model.cpp">
+      <Filter>Lib\Source\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Lib_ModelManager.cpp">
+      <Filter>Lib\Source\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Lib_Texture.cpp">
+      <Filter>Lib\Source\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Lib_SpriteShader.cpp">
+      <Filter>Lib\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\ModelShader.cpp">
+      <Filter>Lib\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Lib_Font.cpp">
+      <Filter>Lib\Source\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Lib_FontRender.cpp">
+      <Filter>Lib\Source\Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Lib_LambertRenderer.cpp">
+      <Filter>Lib\Source\ModelShader</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Lib_PlaneRender.cpp">
+      <Filter>Lib\Source\Sprite\SpriteShader</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Lib_SpriteDebug.cpp">
+      <Filter>Lib\Source\Sprite\SpriteDebug</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Lib_SpriteDebugCircle.cpp">
+      <Filter>Lib\Source\Sprite\SpriteDebug</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Lib_SpriteDebugLine.cpp">
+      <Filter>Lib\Source\Sprite\SpriteDebug</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Lib_SpriteDebugPlane.cpp">
+      <Filter>Lib\Source\Sprite\SpriteDebug</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Lib_SpriteDebugRenderer.cpp">
+      <Filter>Lib\Source\Sprite\SpriteDebug</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Lib_3DDebug.cpp">
+      <Filter>Lib\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Lib_3DDebugBox.cpp">
+      <Filter>Lib\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Lib_3DDebugCircle.cpp">
+      <Filter>Lib\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Lib_3DDebugLine.cpp">
+      <Filter>Lib\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Lib_3DDebugRenderer.cpp">
+      <Filter>Lib\Source\ModelShader</Filter>
+    </ClCompile>
+    <ClCompile Include="External\imGui\imgui.cpp">
+      <Filter>Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="External\imGui\imgui_demo.cpp">
+      <Filter>Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="External\imGui\imgui_draw.cpp">
+      <Filter>Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="External\imGui\imgui_tables.cpp">
+      <Filter>Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="External\imGui\imgui_widgets.cpp">
+      <Filter>Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="External\imGui\imgui_impl_win32.cpp">
+      <Filter>Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="External\imGui\imgui_impl_dx12.cpp">
+      <Filter>Imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Audio\Lib_AudioManager.cpp">
+      <Filter>Lib\Source\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Audio\Lib_Audio.cpp">
+      <Filter>Lib\Source\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Lib_ShadowRenderer.cpp">
+      <Filter>Lib\Source\ModelShader</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Lib_CreateShadowRenderer.cpp">
+      <Filter>Lib\Source\ModelShader</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Lib_CascadedShadowRenhderer.cpp">
+      <Filter>Lib\Source\ModelShader</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Lib_CreateCascadedShadowRenhderer.cpp">
+      <Filter>Lib\Source\ModelShader</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Lib_PointSpriteRenderer.cpp">
+      <Filter>Lib\Source\GeometrySprite</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Lib_ConstantBuffer.cpp">
+      <Filter>Lib\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Lib_Effect3DGeometry.cpp">
+      <Filter>Lib\Source\GeometrySprite</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Lib_GeometryVertexVecter.cpp">
+      <Filter>Lib\Source\GeometrySprite</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\GeometrySpriteShader.cpp">
+      <Filter>Lib\Source\GeometrySprite</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\MeshInstance.cpp">
+      <Filter>Lib\Source\MeshInstance</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\MeshInstancerManager.cpp">
+      <Filter>Lib\Source\MeshInstance</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\MeshInstanceDrawList.cpp">
+      <Filter>Lib\Source\MeshInstance</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Input\InputController.cpp">
+      <Filter>Lib\Source\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Input\InputControllerJoyPad.cpp">
+      <Filter>Lib\Source\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Input\InputControllerKeyBoard.cpp">
+      <Filter>Lib\Source\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Input\InputControllerMouse.cpp">
+      <Filter>Lib\Source\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\SceneBase.cpp">
+      <Filter>Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\SceneGame.cpp">
+      <Filter>Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\SceneManager.cpp">
+      <Filter>Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\SceneMenu.cpp">
+      <Filter>Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\SceneTitle.cpp">
+      <Filter>Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\SceneTuto.cpp">
+      <Filter>Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Scene\SceneLoad.cpp">
+      <Filter>Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Character\CharacterBase.cpp">
+      <Filter>Game\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Camera\CameraManager.cpp">
+      <Filter>Game\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Camera\CameraNormal.cpp">
+      <Filter>Game\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Camera\CameraBase.cpp">
+      <Filter>Game\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Mathf.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\ModelCollisionManager.cpp">
+      <Filter>Lib\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Lib_Collision.cpp">
+      <Filter>Lib\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Lib_PBRRenderer.cpp">
+      <Filter>Lib\Source\ModelShader</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\NavMesh.cpp">
+      <Filter>Game\Nav</Filter>
+    </ClCompile>
+    <ClCompile Include="External\recastnavigation\DebugUtils\Source\DebugDraw.cpp">
+      <Filter>Recastnavgation\DebugUtils\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="External\recastnavigation\DebugUtils\Source\DetourDebugDraw.cpp">
+      <Filter>Recastnavgation\DebugUtils\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="External\recastnavigation\DebugUtils\Source\RecastDebugDraw.cpp">
+      <Filter>Recastnavgation\DebugUtils\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="External\recastnavigation\DebugUtils\Source\RecastDump.cpp">
+      <Filter>Recastnavgation\DebugUtils\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="External\recastnavigation\Detour\Source\DetourAlloc.cpp">
+      <Filter>Recastnavgation\Detour\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="External\recastnavigation\Detour\Source\DetourAssert.cpp">
+      <Filter>Recastnavgation\Detour\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="External\recastnavigation\Detour\Source\DetourCommon.cpp">
+      <Filter>Recastnavgation\Detour\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="External\recastnavigation\Detour\Source\DetourNavMesh.cpp">
+      <Filter>Recastnavgation\Detour\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="External\recastnavigation\Detour\Source\DetourNavMeshBuilder.cpp">
+      <Filter>Recastnavgation\Detour\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="External\recastnavigation\Detour\Source\DetourNavMeshQuery.cpp">
+      <Filter>Recastnavgation\Detour\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="External\recastnavigation\Detour\Source\DetourNode.cpp">
+      <Filter>Recastnavgation\Detour\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="External\recastnavigation\DetourCrowd\Source\DetourCrowd.cpp">
+      <Filter>Recastnavgation\DetourCrowd\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="External\recastnavigation\DetourCrowd\Source\DetourLocalBoundary.cpp">
+      <Filter>Recastnavgation\DetourCrowd\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="External\recastnavigation\DetourCrowd\Source\DetourObstacleAvoidance.cpp">
+      <Filter>Recastnavgation\DetourCrowd\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="External\recastnavigation\DetourCrowd\Source\DetourPathCorridor.cpp">
+      <Filter>Recastnavgation\DetourCrowd\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="External\recastnavigation\DetourCrowd\Source\DetourPathQueue.cpp">
+      <Filter>Recastnavgation\DetourCrowd\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="External\recastnavigation\DetourCrowd\Source\DetourProximityGrid.cpp">
+      <Filter>Recastnavgation\DetourCrowd\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="External\recastnavigation\DetourTileCache\Source\DetourTileCache.cpp">
+      <Filter>Recastnavgation\DetourTileCache\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="External\recastnavigation\DetourTileCache\Source\DetourTileCacheBuilder.cpp">
+      <Filter>Recastnavgation\DetourTileCache\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="External\recastnavigation\Recast\Source\Recast.cpp">
+      <Filter>Recastnavgation\Recast\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="External\recastnavigation\Recast\Source\RecastAlloc.cpp">
+      <Filter>Recastnavgation\Recast\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="External\recastnavigation\Recast\Source\RecastArea.cpp">
+      <Filter>Recastnavgation\Recast\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="External\recastnavigation\Recast\Source\RecastAssert.cpp">
+      <Filter>Recastnavgation\Recast\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="External\recastnavigation\Recast\Source\RecastContour.cpp">
+      <Filter>Recastnavgation\Recast\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="External\recastnavigation\Recast\Source\RecastFilter.cpp">
+      <Filter>Recastnavgation\Recast\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="External\recastnavigation\Recast\Source\RecastLayers.cpp">
+      <Filter>Recastnavgation\Recast\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="External\recastnavigation\Recast\Source\RecastMesh.cpp">
+      <Filter>Recastnavgation\Recast\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="External\recastnavigation\Recast\Source\RecastMeshDetail.cpp">
+      <Filter>Recastnavgation\Recast\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="External\recastnavigation\Recast\Source\RecastRasterization.cpp">
+      <Filter>Recastnavgation\Recast\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="External\recastnavigation\Recast\Source\RecastRegion.cpp">
+      <Filter>Recastnavgation\Recast\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Lib_NavMeshRenderer.cpp">
+      <Filter>Lib\Source\ModelShader</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Lib_3DDebugNav.cpp">
+      <Filter>Lib\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Character\Player.cpp">
+      <Filter>Game\Character\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Character\Enemy\EnemyBase.cpp">
+      <Filter>Game\Character\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Character\Enemy\EnemyManager.cpp">
+      <Filter>Game\Character\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Character\Enemy\EnemySlime.cpp">
+      <Filter>Game\Character\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Character\Enemy\EnemyBeholder.cpp">
+      <Filter>Game\Character\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Character\Enemy\EnemyCheast.cpp">
+      <Filter>Game\Character\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Character\Enemy\EnemyTurleShell.cpp">
+      <Filter>Game\Character\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AI\BehaviorData.cpp">
+      <Filter>Game\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AI\BehaviorTree.cpp">
+      <Filter>Game\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AI\Action\ActionBase.cpp">
+      <Filter>Game\AI\Action</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AI\Judge\JudgementBase.cpp">
+      <Filter>Game\AI\Judge</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AI\Judge\JudgementDerived.cpp">
+      <Filter>Game\AI\Judge</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AI\NodeBase.cpp">
+      <Filter>Game\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Lib_3DDebugCylinder.cpp">
+      <Filter>Lib\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AI\Action\ActionWait.cpp">
+      <Filter>Game\AI\Action\Derived</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AI\Action\ActionWalk.cpp">
+      <Filter>Game\AI\Action\Derived</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Animetion.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Character\PlayetStateBase.cpp">
+      <Filter>Game\Character\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Character\PlayetStateRun.cpp">
+      <Filter>Game\Character\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Character\PlayetStateAttack1.cpp">
+      <Filter>Game\Character\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Character\PlayetStateJump.cpp">
+      <Filter>Game\Character\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Character\PlayerStateDamage.cpp">
+      <Filter>Game\Character\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Character\PlayerStateDie.cpp">
+      <Filter>Game\Character\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Character\PlayerStateWait.cpp">
+      <Filter>Game\Character\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AI\Action\ActionPursuit.cpp">
+      <Filter>Game\AI\Action\Derived</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\AI\Action\AttackAction.cpp">
+      <Filter>Game\AI\Action\Derived</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Collision.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Character\PlayerState.cpp" />
+    <ClCompile Include="Source\AI\Action\DeadAction.cpp">
+      <Filter>Game\AI\Action\Derived</Filter>
+    </ClCompile>
+    <ClCompile Include="Lib\Lib_NoLightRenderer.cpp">
+      <Filter>Lib\Source\ModelShader</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Character\PlayerStateRolling.cpp">
+      <Filter>Game\Character\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Character\PlayerStateAttack2.cpp">
+      <Filter>Game\Character\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Character\PlayerStateAttack3.cpp">
+      <Filter>Game\Character\Player\State</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Camera\CameraTargetEnemy.cpp">
+      <Filter>Game\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UI\UI_Base.cpp">
+      <Filter>Game\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\UI\UI_TargetEnemyCursor.cpp">
+      <Filter>Game\UI</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Lib\Lib.h">
+      <Filter>Lib\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Lib_Graphics.h">
+      <Filter>Lib\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Lib_Descriptor.h">
+      <Filter>Lib\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Lib_CameraLib.h">
+      <Filter>Lib\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Lib_DirectXFunction.h">
+      <Filter>Lib\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Lib_highResolutionTimer.h">
+      <Filter>Lib\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Lib_Misc.h">
+      <Filter>Lib\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Lib_Vector.h">
+      <Filter>Lib\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Lib_Sprite.h">
+      <Filter>Lib\Header\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Lib_Shader.h">
+      <Filter>Lib\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Lib_SpriteDebugRenderer.h">
+      <Filter>Lib\Header\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Lib_SpriteDebug.h">
+      <Filter>Lib\Header\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Lib_Model.h">
+      <Filter>Lib\Header\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Lib_ModelResource.h">
+      <Filter>Lib\Header\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Lib_ConstantBuffer.h">
+      <Filter>Lib\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Lib_ModelManager.h">
+      <Filter>Lib\Header\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Lib_PlaneRenderer.h">
+      <Filter>Lib\Header\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Lib_Texture.h">
+      <Filter>Lib\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Lib_Font.h">
+      <Filter>Lib\Header\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Lib_FontRender.h">
+      <Filter>Lib\Header\Sprite</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Lib_LambertRenderer.h">
+      <Filter>Lib\Header\ModelShader</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Lib_SpriteRenderer.h">
+      <Filter>Lib\Header\SpriteShader</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Lib_3DDebug.h">
+      <Filter>Lib\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Lib_3DDebugRenderer.h">
+      <Filter>Lib\Header\ModelShader</Filter>
+    </ClInclude>
+    <ClInclude Include="External\imGui\imconfig.h">
+      <Filter>Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="External\imGui\imgui.h">
+      <Filter>Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="External\imGui\imgui_internal.h">
+      <Filter>Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="External\imGui\imstb_rectpack.h">
+      <Filter>Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="External\imGui\imstb_textedit.h">
+      <Filter>Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="External\imGui\imstb_truetype.h">
+      <Filter>Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="External\imGui\imgui_impl_dx12.h">
+      <Filter>Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="External\imGui\imgui_impl_win32.h">
+      <Filter>Imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Audio\Lib_Audio.h">
+      <Filter>Lib\Header\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Lib_PointSpriteRenderer.h">
+      <Filter>Lib\Header\GeometrySprite</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Lib_GeometryVertexVecter.h">
+      <Filter>Lib\Header\GeometrySprite</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Lib_Effect3DGeometry.h">
+      <Filter>Lib\Header\GeometrySprite</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\MeshInstance.h">
+      <Filter>Lib\Source\MeshInstance</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Input\InputController.h">
+      <Filter>Lib\Header\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\SceneBase.h">
+      <Filter>Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Scene\SceneManager.h">
+      <Filter>Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Character\CharacterBase.h">
+      <Filter>Game\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Camera\CameraManager.h">
+      <Filter>Game\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Camera\CameraBase.h">
+      <Filter>Game\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Mathf.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\ModelCollisionManager.h">
+      <Filter>Lib\Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Lib_Collision.h">
+      <Filter>Lib\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Lib_PBRRenderer.h">
+      <Filter>Lib\Header\ModelShader</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Lib_CascadedShadowRenderer.h">
+      <Filter>Lib\Header\ModelShader</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\NavMesh.h">
+      <Filter>Game\Nav</Filter>
+    </ClInclude>
+    <ClInclude Include="External\recastnavigation\DebugUtils\Include\DebugDraw.h">
+      <Filter>Recastnavgation\DebugUtils\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="External\recastnavigation\DebugUtils\Include\DetourDebugDraw.h">
+      <Filter>Recastnavgation\DebugUtils\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="External\recastnavigation\DebugUtils\Include\RecastDebugDraw.h">
+      <Filter>Recastnavgation\DebugUtils\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="External\recastnavigation\DebugUtils\Include\RecastDump.h">
+      <Filter>Recastnavgation\DebugUtils\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="External\recastnavigation\Detour\Include\DetourAlloc.h">
+      <Filter>Recastnavgation\Detour\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="External\recastnavigation\Detour\Include\DetourAssert.h">
+      <Filter>Recastnavgation\Detour\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="External\recastnavigation\Detour\Include\DetourCommon.h">
+      <Filter>Recastnavgation\Detour\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="External\recastnavigation\Detour\Include\DetourMath.h">
+      <Filter>Recastnavgation\Detour\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="External\recastnavigation\Detour\Include\DetourNavMesh.h">
+      <Filter>Recastnavgation\Detour\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="External\recastnavigation\Detour\Include\DetourNavMeshBuilder.h">
+      <Filter>Recastnavgation\Detour\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="External\recastnavigation\Detour\Include\DetourNavMeshQuery.h">
+      <Filter>Recastnavgation\Detour\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="External\recastnavigation\Detour\Include\DetourNode.h">
+      <Filter>Recastnavgation\Detour\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="External\recastnavigation\Detour\Include\DetourStatus.h">
+      <Filter>Recastnavgation\Detour\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="External\recastnavigation\DetourCrowd\Include\DetourLocalBoundary.h">
+      <Filter>Recastnavgation\DetourCrowd\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="External\recastnavigation\DetourCrowd\Include\DetourObstacleAvoidance.h">
+      <Filter>Recastnavgation\DetourCrowd\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="External\recastnavigation\DetourCrowd\Include\DetourPathCorridor.h">
+      <Filter>Recastnavgation\DetourCrowd\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="External\recastnavigation\DetourCrowd\Include\DetourPathQueue.h">
+      <Filter>Recastnavgation\DetourCrowd\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="External\recastnavigation\DetourCrowd\Include\DetourProximityGrid.h">
+      <Filter>Recastnavgation\DetourCrowd\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="External\recastnavigation\DetourCrowd\Include\DetourCrowd.h">
+      <Filter>Recastnavgation\DetourCrowd\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="External\recastnavigation\DetourTileCache\Include\DetourTileCache.h">
+      <Filter>Recastnavgation\DetourTileCache\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="External\recastnavigation\DetourTileCache\Include\DetourTileCacheBuilder.h">
+      <Filter>Recastnavgation\DetourTileCache\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="External\recastnavigation\Recast\Include\Recast.h">
+      <Filter>Recastnavgation\Recast\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="External\recastnavigation\Recast\Include\RecastAlloc.h">
+      <Filter>Recastnavgation\Recast\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="External\recastnavigation\Recast\Include\RecastAssert.h">
+      <Filter>Recastnavgation\Recast\Include</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Lib_NavMeshRenderer.h">
+      <Filter>Lib\Header\ModelShader</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Character\Player.h">
+      <Filter>Game\Character\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Character\Enemy\EnemyBase.h">
+      <Filter>Game\Character\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Character\Enemy\EnemyManager.h">
+      <Filter>Game\Character\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\AI\BehaviorTree.h">
+      <Filter>Game\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\AI\BehaviorData.h">
+      <Filter>Game\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\AI\Action\ActionBase.h">
+      <Filter>Game\AI\Action</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\AI\Judge\JudgementBase.h">
+      <Filter>Game\AI\Judge</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\AI\Judge\JudgementDerived.h">
+      <Filter>Game\AI\Judge</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\AI\NodeBase.h">
+      <Filter>Game\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\AI\Action\ActionDerived.h">
+      <Filter>Game\AI\Action</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Animetion.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Character\PlayerState.h">
+      <Filter>Game\Character\Player\State</Filter>
+    </ClInclude>
+    <ClInclude Include="ActionAttack.cpp">
+      <Filter>Game\AI\Action\Derived</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Collision.h">
+      <Filter>Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Lib\Lib_NoLightRenderer.h">
+      <Filter>Lib\Header\ModelShader</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\UI\UI_Base.h">
+      <Filter>Game\UI</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Lib\Shader\Font.hlsli">
+      <Filter>Lib\Shader\Font</Filter>
+    </None>
+    <None Include="Lib\Shader\SpriteDebug.hlsli">
+      <Filter>Lib\Shader\SpriteDebug</Filter>
+    </None>
+    <None Include="Lib\Shader\Sprite.hlsli">
+      <Filter>Lib\Shader\Sprite</Filter>
+    </None>
+    <None Include="Lib\Shader\Plane.hlsli">
+      <Filter>Lib\Shader\Plane</Filter>
+    </None>
+    <None Include="Lib\Shader\Lambert.hlsli">
+      <Filter>Lib\Shader\Lambert</Filter>
+    </None>
+    <None Include="Lib\Shader\GeometryDebug.hlsli">
+      <Filter>Lib\Shader\Geometry</Filter>
+    </None>
+    <None Include="Lib\Shader\BasicShader.hlsli">
+      <Filter>Lib\Shader</Filter>
+    </None>
+    <None Include="Lib\Shader\CreateShadowMap.hlsli">
+      <Filter>Lib\Shader\CreateShadowMap</Filter>
+    </None>
+    <None Include="Lib\Shader\NormalShadowMap.hlsli">
+      <Filter>Lib\Shader\NormalShadowMap</Filter>
+    </None>
+    <None Include="Lib\Shader\CreateCascadedShadowRenderer.hlsli">
+      <Filter>Lib\Shader\CreateCascadedShadowRenderer</Filter>
+    </None>
+    <None Include="Lib\Shader\CascadedShadowRenderer.hlsli">
+      <Filter>Lib\Shader\CascadedShadowRenderer</Filter>
+    </None>
+    <None Include="Lib\Shader\PointSprite.hlsli">
+      <Filter>Lib\Shader\PointSprite</Filter>
+    </None>
+    <None Include="Lib\Shader\PBR.hlsli">
+      <Filter>Lib\Shader\PBR</Filter>
+    </None>
+    <None Include="Lib\Shader\NavMesh.hlsli">
+      <Filter>Lib\Shader\NavMesh</Filter>
+    </None>
+    <None Include="Lib\Shader\NoLight.hlsli">
+      <Filter>Lib\Shader\NoLight</Filter>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Lib\Shader\Font_ps.hlsl">
+      <Filter>Lib\Shader\Font</Filter>
+    </FxCompile>
+    <FxCompile Include="Lib\Shader\Font_vs.hlsl">
+      <Filter>Lib\Shader\Font</Filter>
+    </FxCompile>
+    <FxCompile Include="Lib\Shader\SpriteDebug_vs.hlsl">
+      <Filter>Lib\Shader\SpriteDebug</Filter>
+    </FxCompile>
+    <FxCompile Include="Lib\Shader\SpriteDebug_ps.hlsl">
+      <Filter>Lib\Shader\SpriteDebug</Filter>
+    </FxCompile>
+    <FxCompile Include="Lib\Shader\Sprite_vs.hlsl">
+      <Filter>Lib\Shader\Sprite</Filter>
+    </FxCompile>
+    <FxCompile Include="Lib\Shader\Sprite_ps.hlsl">
+      <Filter>Lib\Shader\Sprite</Filter>
+    </FxCompile>
+    <FxCompile Include="Lib\Shader\Plane_vs.hlsl">
+      <Filter>Lib\Shader\Plane</Filter>
+    </FxCompile>
+    <FxCompile Include="Lib\Shader\Plane_ps.hlsl">
+      <Filter>Lib\Shader\Plane</Filter>
+    </FxCompile>
+    <FxCompile Include="Lib\Shader\Lambert_ps.hlsl">
+      <Filter>Lib\Shader\Lambert</Filter>
+    </FxCompile>
+    <FxCompile Include="Lib\Shader\Lambert_vs.hlsl">
+      <Filter>Lib\Shader\Lambert</Filter>
+    </FxCompile>
+    <FxCompile Include="Lib\Shader\GeometryDebug_ps.hlsl">
+      <Filter>Lib\Shader\Geometry</Filter>
+    </FxCompile>
+    <FxCompile Include="Lib\Shader\GeometryDebug_vs.hlsl">
+      <Filter>Lib\Shader\Geometry</Filter>
+    </FxCompile>
+    <FxCompile Include="Lib\Shader\CreateShadowMap_vs.hlsl">
+      <Filter>Lib\Shader\CreateShadowMap</Filter>
+    </FxCompile>
+    <FxCompile Include="Lib\Shader\CreateShadowMap_ps.hlsl">
+      <Filter>Lib\Shader\CreateShadowMap</Filter>
+    </FxCompile>
+    <FxCompile Include="Lib\Shader\NormalShadowMap_vs.hlsl">
+      <Filter>Lib\Shader\NormalShadowMap</Filter>
+    </FxCompile>
+    <FxCompile Include="Lib\Shader\NormalShadowMap_ps.hlsl">
+      <Filter>Lib\Shader\NormalShadowMap</Filter>
+    </FxCompile>
+    <FxCompile Include="Lib\Shader\CreateCascadedShadowRenderer_vs.hlsl">
+      <Filter>Lib\Shader\CreateCascadedShadowRenderer</Filter>
+    </FxCompile>
+    <FxCompile Include="Lib\Shader\CreateCascadedShadowRenderer_ps.hlsl">
+      <Filter>Lib\Shader\CreateCascadedShadowRenderer</Filter>
+    </FxCompile>
+    <FxCompile Include="Lib\Shader\CascadedShadowRenderer_ps.hlsl">
+      <Filter>Lib\Shader\CascadedShadowRenderer</Filter>
+    </FxCompile>
+    <FxCompile Include="Lib\Shader\CascadedShadowRenderer_vs.hlsl">
+      <Filter>Lib\Shader\CascadedShadowRenderer</Filter>
+    </FxCompile>
+    <FxCompile Include="Lib\Shader\PointSprite_vs.hlsl">
+      <Filter>Lib\Shader\PointSprite</Filter>
+    </FxCompile>
+    <FxCompile Include="Lib\Shader\PointSprite_ps.hlsl">
+      <Filter>Lib\Shader\PointSprite</Filter>
+    </FxCompile>
+    <FxCompile Include="Lib\Shader\PointSprite_gs.hlsl">
+      <Filter>Lib\Shader\PointSprite</Filter>
+    </FxCompile>
+    <FxCompile Include="Lib\Shader\PBR_vs.hlsl">
+      <Filter>Lib\Shader\PBR</Filter>
+    </FxCompile>
+    <FxCompile Include="Lib\Shader\PBR_ps.hlsl">
+      <Filter>Lib\Shader\PBR</Filter>
+    </FxCompile>
+    <FxCompile Include="Lib\Shader\NavMesh_vs.hlsl">
+      <Filter>Lib\Shader\NavMesh</Filter>
+    </FxCompile>
+    <FxCompile Include="Lib\Shader\NavMesh_ps.hlsl">
+      <Filter>Lib\Shader\NavMesh</Filter>
+    </FxCompile>
+    <FxCompile Include="Lib\Shader\NoLight_ps.hlsl">
+      <Filter>Lib\Shader\NoLight</Filter>
+    </FxCompile>
+    <FxCompile Include="Lib\Shader\NoLight_vs.hlsl">
+      <Filter>Lib\Shader\NoLight</Filter>
+    </FxCompile>
+  </ItemGroup>
+</Project>

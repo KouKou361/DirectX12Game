@@ -1,0 +1,9 @@
+diff a/Lib/Lib_ModelManager.cpp b/Lib/Lib_ModelManager.cpp	(rejected hunks)
+@@ -52,6 +52,7 @@
+ //���f���̐���
+ ModelResource* Lib_ModelManager::CreateModel(Graphics* graphics,const string fileName)
+ {
++
+ 	ModelResource* modelResource = new ModelResource(graphics,fileName.c_str());
+ 	return modelResource;
+ }

@@ -1,0 +1,10 @@
+diff a/Lib/Lib_Model.cpp b/Lib/Lib_Model.cpp	(rejected hunks)
+@@ -20,7 +20,7 @@
+ 	// ���\�[�X�ǂݍ���
+ 	m_resource = modelResource;
+ 
+-	Create(graphics);
++	//Create(graphics);
+ }
+ 
+ Model::~Model()

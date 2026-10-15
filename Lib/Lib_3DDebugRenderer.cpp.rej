@@ -1,0 +1,10 @@
+diff a/Lib/Lib_3DDebugRenderer.cpp b/Lib/Lib_3DDebugRenderer.cpp	(rejected hunks)
+@@ -212,6 +212,8 @@
+ void GeometryDebugRenderer::Begin(Graphics* graphics)
+ {
+ 	ID3D12GraphicsCommandList* commandList = graphics->GetCommandList();
++
++
+ 	// �p�C�v���C���ݒ�
+ 	commandList->SetGraphicsRootSignature(rootSignature.Get());
+ 	commandList->SetPipelineState(linePipelineState.Get());

@@ -1,0 +1,10 @@
+diff a/Lib/Lib.cpp b/Lib/Lib.cpp	(rejected hunks)
+@@ -106,7 +106,7 @@
+     Effect3DGeometryRenderer* effect3DGeometryRenderer = nullptr;
+ 
+     InputController* inputController =nullptr;
+-
++    
+ 
+     ////3D�W�I���g���[�I�u�W�F�N�g
+     //Model3D* model3D = nullptr;

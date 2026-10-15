@@ -1,0 +1,781 @@
+;
+; Input signature:
+;
+; Name                 Index   Mask Register SysValue  Format   Used
+; -------------------- ----- ------ -------- -------- ------- ------
+; no parameters
+;
+; Output signature:
+;
+; Name                 Index   Mask Register SysValue  Format   Used
+; -------------------- ----- ------ -------- -------- ------- ------
+; SV_Position              0   xyzw        0      POS   float   xyzw
+; POSITION                 0   xyz         1     NONE   float   xyz 
+; NORMAL                   0   xyz         2     NONE   float   xyz 
+; COLOR                    0   x           3     NONE    uint   x   
+;
+; shader debug name: 74b0b685caf7ad2fa433cbbd363f45ab.pdb
+; shader hash: 74b0b685caf7ad2fa433cbbd363f45ab
+;
+; Pipeline Runtime Information: 
+;
+;
+;
+; Vertex Output signature:
+;
+; Name                 Index             InterpMode DynIdx
+; -------------------- ----- ---------------------- ------
+; SV_Position              0          noperspective       
+; POSITION                 0                 linear       
+; NORMAL                   0                 linear       
+; COLOR                    0        nointerpolation       
+;
+; Buffer Definitions:
+;
+; cbuffer Globals
+; {
+;
+;   struct hostlayout.Globals
+;   {
+;
+;       struct hostlayout.struct.Constants
+;       {
+;
+;           column_major float4x4 World;              ; Offset:    0
+;           column_major float4x4 WorldView;          ; Offset:   64
+;           column_major float4x4 WorldViewProj;      ; Offset:  128
+;           uint DrawMeshlets;                        ; Offset:  192
+;       
+;       } Globals;                                    ; Offset:    0
+;
+;   
+;   } Globals;                                        ; Offset:    0 Size:   196
+;
+; }
+;
+; cbuffer meshInfo
+; {
+;
+;   struct meshInfo
+;   {
+;
+;       struct struct.MeshInfo
+;       {
+;
+;           uint IndexBytes;                          ; Offset:    0
+;           uint MeshletOffset;                       ; Offset:    4
+;       
+;       } meshInfo;                                   ; Offset:    0
+;
+;   
+;   } meshInfo;                                       ; Offset:    0 Size:     8
+;
+; }
+;
+; Resource bind info for Vertices
+; {
+;
+;   struct struct.Vertex
+;   {
+;
+;       float3 Position;                              ; Offset:    0
+;       float3 Normal;                                ; Offset:   12
+;   
+;   } $Element;                                       ; Offset:    0 Size:    24
+;
+; }
+;
+; Resource bind info for Meshlets
+; {
+;
+;   struct struct.Meshlet
+;   {
+;
+;       uint VertCount;                               ; Offset:    0
+;       uint VertOffset;                              ; Offset:    4
+;       uint PrimCount;                               ; Offset:    8
+;       uint PrimOffset;                              ; Offset:   12
+;   
+;   } $Element;                                       ; Offset:    0 Size:    16
+;
+; }
+;
+; Resource bind info for PrimitiveIndices
+; {
+;
+;   uint $Element;                                    ; Offset:    0 Size:     4
+;
+; }
+;
+;
+; Resource Bindings:
+;
+; Name                                 Type  Format         Dim      ID      HLSL Bind  Count
+; ------------------------------ ---------- ------- ----------- ------- -------------- ------
+; Globals                           cbuffer      NA          NA     CB0            cb0     1
+; meshInfo                          cbuffer      NA          NA     CB1            cb1     1
+; Vertices                          texture  struct         r/o      T0             t0     1
+; Meshlets                          texture  struct         r/o      T1             t1     1
+; UniqueVertexIndices               texture    byte         r/o      T2             t2     1
+; PrimitiveIndices                  texture  struct         r/o      T3             t3     1
+;
+;
+; ViewId state:
+;
+; Number of inputs: 0, outputs: 13, primitive outputs: 0
+; Outputs dependent on ViewId: {  }
+; Primitive Outputs dependent on ViewId: {  }
+; Inputs contributing to computation of Outputs:
+; Inputs contributing to computation of Primitive Outputs:
+;
+target datalayout = "e-m:e-p:32:32-i1:32-i8:32-i16:32-i32:32-i64:64-f16:32-f32:32-f64:64-n8:16:32:64"
+target triple = "dxil-ms-dx"
+
+%dx.types.Handle = type { i8* }
+%dx.types.CBufRet.i32 = type { i32, i32, i32, i32 }
+%dx.types.ResRet.i32 = type { i32, i32, i32, i32, i32 }
+%dx.types.ResRet.f32 = type { float, float, float, float, i32 }
+%dx.types.CBufRet.f32 = type { float, float, float, float }
+%"class.StructuredBuffer<Vertex>" = type { %struct.Vertex }
+%struct.Vertex = type { <3 x float>, <3 x float> }
+%"class.StructuredBuffer<Meshlet>" = type { %struct.Meshlet }
+%struct.Meshlet = type { i32, i32, i32, i32 }
+%struct.ByteAddressBuffer = type { i32 }
+%"class.StructuredBuffer<unsigned int>" = type { i32 }
+%hostlayout.Globals = type { %hostlayout.struct.Constants }
+%hostlayout.struct.Constants = type { [4 x <4 x float>], [4 x <4 x float>], [4 x <4 x float>], i32 }
+%meshInfo = type { %struct.MeshInfo }
+%struct.MeshInfo = type { i32, i32 }
+
+@dx.nothing.a = internal constant [1 x i32] zeroinitializer
+
+define void @main() {
+  %PrimitiveIndices_texture_structbuf = call %dx.types.Handle @dx.op.createHandle(i32 57, i8 0, i32 3, i32 3, i1 false), !dbg !203 ; line:75 col:28  ; CreateHandle(resourceClass,rangeId,index,nonUniformIndex)
+  %UniqueVertexIndices_texture_rawbuf = call %dx.types.Handle @dx.op.createHandle(i32 57, i8 0, i32 2, i32 2, i1 false), !dbg !203 ; line:75 col:28  ; CreateHandle(resourceClass,rangeId,index,nonUniformIndex)
+  %Meshlets_texture_structbuf = call %dx.types.Handle @dx.op.createHandle(i32 57, i8 0, i32 1, i32 1, i1 false), !dbg !203 ; line:75 col:28  ; CreateHandle(resourceClass,rangeId,index,nonUniformIndex)
+  %Vertices_texture_structbuf = call %dx.types.Handle @dx.op.createHandle(i32 57, i8 0, i32 0, i32 0, i1 false), !dbg !203 ; line:75 col:28  ; CreateHandle(resourceClass,rangeId,index,nonUniformIndex)
+  %meshInfo_cbuffer = call %dx.types.Handle @dx.op.createHandle(i32 57, i8 2, i32 1, i32 1, i1 false), !dbg !203 ; line:75 col:28  ; CreateHandle(resourceClass,rangeId,index,nonUniformIndex)
+  %Globals_cbuffer = call %dx.types.Handle @dx.op.createHandle(i32 57, i8 2, i32 0, i32 0, i1 false), !dbg !203 ; line:75 col:28  ; CreateHandle(resourceClass,rangeId,index,nonUniformIndex)
+  %1 = call i32 @dx.op.groupId.i32(i32 94, i32 0), !dbg !207 ; line:121 col:28  ; GroupId(component)
+  %2 = call i32 @dx.op.threadIdInGroup.i32(i32 95, i32 0), !dbg !207 ; line:121 col:28  ; ThreadIdInGroup(component)
+  call void @llvm.dbg.value(metadata i32 %1, i64 0, metadata !208, metadata !209), !dbg !210 ; var:"gid" !DIExpression() func:"main"
+  call void @llvm.dbg.value(metadata i32 %2, i64 0, metadata !211, metadata !209), !dbg !212 ; var:"gtid" !DIExpression() func:"main"
+  %3 = call %dx.types.CBufRet.i32 @dx.op.cbufferLoadLegacy.i32(i32 59, %dx.types.Handle %meshInfo_cbuffer, i32 0), !dbg !213 ; line:124 col:35  ; CBufferLoadLegacy(handle,regIndex)
+  %4 = extractvalue %dx.types.CBufRet.i32 %3, 1, !dbg !213 ; line:124 col:35
+  %5 = add i32 %4, %1, !dbg !214 ; line:124 col:49
+  %6 = load i32, i32* getelementptr inbounds ([1 x i32], [1 x i32]* @dx.nothing.a, i32 0, i32 0), !dbg !215 ; line:124 col:17
+  %RawBufferLoad6 = call %dx.types.ResRet.i32 @dx.op.rawBufferLoad.i32(i32 139, %dx.types.Handle %Meshlets_texture_structbuf, i32 %5, i32 0, i8 1, i32 4), !dbg !215 ; line:124 col:17  ; RawBufferLoad(srv,index,elementOffset,mask,alignment)
+  %7 = extractvalue %dx.types.ResRet.i32 %RawBufferLoad6, 0, !dbg !215 ; line:124 col:17
+  call void @llvm.dbg.value(metadata i32 %7, i64 0, metadata !216, metadata !217), !dbg !218 ; var:"m" !DIExpression(DW_OP_bit_piece, 0, 32) func:"main"
+  call void @llvm.dbg.value(metadata i32 %7, i64 0, metadata !219, metadata !217), !dbg !220 ; var:"m" !DIExpression(DW_OP_bit_piece, 0, 32) func:"GetPrimitive"
+  call void @llvm.dbg.value(metadata i32 %7, i64 0, metadata !221, metadata !217), !dbg !222 ; var:"m" !DIExpression(DW_OP_bit_piece, 0, 32) func:"GetVertexIndex"
+  %RawBufferLoad5 = call %dx.types.ResRet.i32 @dx.op.rawBufferLoad.i32(i32 139, %dx.types.Handle %Meshlets_texture_structbuf, i32 %5, i32 4, i8 1, i32 4), !dbg !215 ; line:124 col:17  ; RawBufferLoad(srv,index,elementOffset,mask,alignment)
+  %8 = extractvalue %dx.types.ResRet.i32 %RawBufferLoad5, 0, !dbg !215 ; line:124 col:17
+  call void @llvm.dbg.value(metadata i32 %8, i64 0, metadata !216, metadata !226), !dbg !218 ; var:"m" !DIExpression(DW_OP_bit_piece, 32, 32) func:"main"
+  call void @llvm.dbg.value(metadata i32 %8, i64 0, metadata !219, metadata !226), !dbg !220 ; var:"m" !DIExpression(DW_OP_bit_piece, 32, 32) func:"GetPrimitive"
+  call void @llvm.dbg.value(metadata i32 %8, i64 0, metadata !221, metadata !226), !dbg !222 ; var:"m" !DIExpression(DW_OP_bit_piece, 32, 32) func:"GetVertexIndex"
+  %RawBufferLoad4 = call %dx.types.ResRet.i32 @dx.op.rawBufferLoad.i32(i32 139, %dx.types.Handle %Meshlets_texture_structbuf, i32 %5, i32 8, i8 1, i32 4), !dbg !215 ; line:124 col:17  ; RawBufferLoad(srv,index,elementOffset,mask,alignment)
+  %9 = extractvalue %dx.types.ResRet.i32 %RawBufferLoad4, 0, !dbg !215 ; line:124 col:17
+  call void @llvm.dbg.value(metadata i32 %9, i64 0, metadata !216, metadata !227), !dbg !218 ; var:"m" !DIExpression(DW_OP_bit_piece, 64, 32) func:"main"
+  call void @llvm.dbg.value(metadata i32 %9, i64 0, metadata !219, metadata !227), !dbg !220 ; var:"m" !DIExpression(DW_OP_bit_piece, 64, 32) func:"GetPrimitive"
+  call void @llvm.dbg.value(metadata i32 %9, i64 0, metadata !221, metadata !227), !dbg !222 ; var:"m" !DIExpression(DW_OP_bit_piece, 64, 32) func:"GetVertexIndex"
+  %RawBufferLoad = call %dx.types.ResRet.i32 @dx.op.rawBufferLoad.i32(i32 139, %dx.types.Handle %Meshlets_texture_structbuf, i32 %5, i32 12, i8 1, i32 4), !dbg !215 ; line:124 col:17  ; RawBufferLoad(srv,index,elementOffset,mask,alignment)
+  %10 = extractvalue %dx.types.ResRet.i32 %RawBufferLoad, 0, !dbg !215 ; line:124 col:17
+  call void @llvm.dbg.value(metadata i32 %10, i64 0, metadata !216, metadata !228), !dbg !218 ; var:"m" !DIExpression(DW_OP_bit_piece, 96, 32) func:"main"
+  call void @llvm.dbg.value(metadata i32 %10, i64 0, metadata !219, metadata !228), !dbg !220 ; var:"m" !DIExpression(DW_OP_bit_piece, 96, 32) func:"GetPrimitive"
+  call void @llvm.dbg.value(metadata i32 %10, i64 0, metadata !221, metadata !228), !dbg !222 ; var:"m" !DIExpression(DW_OP_bit_piece, 96, 32) func:"GetVertexIndex"
+  call void @dx.op.setMeshOutputCounts(i32 168, i32 %7, i32 %9), !dbg !229 ; line:126 col:5  ; SetMeshOutputCounts(numVertices,numPrimitives)
+  %11 = icmp ult i32 %2, %9, !dbg !230 ; line:128 col:14
+  %12 = icmp ne i1 %11, false, !dbg !230 ; line:128 col:14
+  %13 = icmp ne i1 %12, false, !dbg !230 ; line:128 col:14
+  br i1 %13, label %14, label %27, !dbg !231 ; line:128 col:9
+
+; <label>:14                                      ; preds = %0
+  %15 = load i32, i32* getelementptr inbounds ([1 x i32], [1 x i32]* @dx.nothing.a, i32 0, i32 0), !dbg !232 ; line:130 col:22
+  call void @llvm.dbg.value(metadata i32 %2, i64 0, metadata !233, metadata !209), !dbg !234 ; var:"index" !DIExpression() func:"GetPrimitive"
+  %16 = add i32 %10, %2, !dbg !235 ; line:75 col:58
+  %RawBufferLoad7 = call %dx.types.ResRet.i32 @dx.op.rawBufferLoad.i32(i32 139, %dx.types.Handle %PrimitiveIndices_texture_structbuf, i32 %16, i32 0, i8 1, i32 4), !dbg !203 ; line:75 col:28  ; RawBufferLoad(srv,index,elementOffset,mask,alignment)
+  %17 = extractvalue %dx.types.ResRet.i32 %RawBufferLoad7, 0, !dbg !203 ; line:75 col:28
+  %18 = load i32, i32* getelementptr inbounds ([1 x i32], [1 x i32]* @dx.nothing.a, i32 0, i32 0), !dbg !236 ; line:75 col:12
+  call void @llvm.dbg.value(metadata i32 %17, i64 0, metadata !237, metadata !209), !dbg !238 ; var:"primitive" !DIExpression() func:"UnpackPrimitive"
+  %19 = and i32 %17, 1023, !dbg !240 ; line:70 col:28
+  %20 = lshr i32 %17, 10, !dbg !241 ; line:70 col:48
+  %21 = and i32 %20, 1023, !dbg !242 ; line:70 col:55
+  %22 = lshr i32 %17, 20, !dbg !243 ; line:70 col:75
+  %23 = and i32 %22, 1023, !dbg !244 ; line:70 col:82
+  %24 = load i32, i32* getelementptr inbounds ([1 x i32], [1 x i32]* @dx.nothing.a, i32 0, i32 0), !dbg !245 ; line:70 col:5
+  %25 = load i32, i32* getelementptr inbounds ([1 x i32], [1 x i32]* @dx.nothing.a, i32 0, i32 0), !dbg !246 ; line:75 col:5
+  %26 = load i32, i32* getelementptr inbounds ([1 x i32], [1 x i32]* @dx.nothing.a, i32 0, i32 0), !dbg !247 ; line:130 col:20
+  call void @dx.op.emitIndices(i32 169, i32 %2, i32 %19, i32 %21, i32 %23), !dbg !247 ; line:130 col:20  ; EmitIndices(PrimitiveIndex,VertexIndex0,VertexIndex1,VertexIndex2)
+  br label %27, !dbg !248 ; line:131 col:5
+
+; <label>:27                                      ; preds = %14, %0
+  %28 = icmp ult i32 %2, %7, !dbg !249 ; line:133 col:14
+  %29 = icmp ne i1 %28, false, !dbg !249 ; line:133 col:14
+  %30 = icmp ne i1 %29, false, !dbg !249 ; line:133 col:14
+  br i1 %30, label %31, label %131, !dbg !250 ; line:133 col:9
+
+; <label>:31                                      ; preds = %27
+  %32 = load i32, i32* getelementptr inbounds ([1 x i32], [1 x i32]* @dx.nothing.a, i32 0, i32 0), !dbg !251 ; line:135 col:28
+  call void @llvm.dbg.value(metadata i32 %2, i64 0, metadata !252, metadata !209), !dbg !253 ; var:"localIndex" !DIExpression() func:"GetVertexIndex"
+  %33 = add i32 %8, %2, !dbg !254 ; line:80 col:31
+  call void @llvm.dbg.value(metadata i32 %33, i64 0, metadata !252, metadata !209), !dbg !253 ; var:"localIndex" !DIExpression() func:"GetVertexIndex"
+  %34 = call %dx.types.CBufRet.i32 @dx.op.cbufferLoadLegacy.i32(i32 59, %dx.types.Handle %meshInfo_cbuffer, i32 0), !dbg !255 ; line:82 col:18  ; CBufferLoadLegacy(handle,regIndex)
+  %35 = extractvalue %dx.types.CBufRet.i32 %34, 0, !dbg !255 ; line:82 col:18
+  %36 = icmp eq i32 %35, 4, !dbg !257 ; line:82 col:29
+  br i1 %36, label %37, label %40, !dbg !258 ; line:82 col:9
+
+; <label>:37                                      ; preds = %31
+  %38 = mul i32 %33, 4, !dbg !259 ; line:84 col:52
+  %RawBufferLoad8 = call %dx.types.ResRet.i32 @dx.op.rawBufferLoad.i32(i32 139, %dx.types.Handle %UniqueVertexIndices_texture_rawbuf, i32 %38, i32 undef, i8 1, i32 4), !dbg !261 ; line:84 col:16  ; RawBufferLoad(srv,index,elementOffset,mask,alignment)
+  %39 = extractvalue %dx.types.ResRet.i32 %RawBufferLoad8, 0, !dbg !261 ; line:84 col:16
+  br label %"\01?GetVertexIndex@@YAIUMeshlet@@I@Z.exit", !dbg !262 ; line:84 col:9
+
+; <label>:40                                      ; preds = %31
+  %41 = and i32 %33, 1, !dbg !263 ; line:89 col:39
+  %42 = load i32, i32* getelementptr inbounds ([1 x i32], [1 x i32]* @dx.nothing.a, i32 0, i32 0), !dbg !265 ; line:89 col:14
+  call void @llvm.dbg.value(metadata i32 %41, i64 0, metadata !266, metadata !209), !dbg !265 ; var:"wordOffset" !DIExpression() func:"GetVertexIndex"
+  %43 = udiv i32 %33, 2, !dbg !267 ; line:90 col:39
+  %44 = mul i32 %43, 4, !dbg !268 ; line:90 col:44
+  %45 = load i32, i32* getelementptr inbounds ([1 x i32], [1 x i32]* @dx.nothing.a, i32 0, i32 0), !dbg !269 ; line:90 col:14
+  call void @llvm.dbg.value(metadata i32 %44, i64 0, metadata !270, metadata !209), !dbg !269 ; var:"byteOffset" !DIExpression() func:"GetVertexIndex"
+  %RawBufferLoad9 = call %dx.types.ResRet.i32 @dx.op.rawBufferLoad.i32(i32 139, %dx.types.Handle %UniqueVertexIndices_texture_rawbuf, i32 %44, i32 undef, i8 1, i32 4), !dbg !271 ; line:93 col:26  ; RawBufferLoad(srv,index,elementOffset,mask,alignment)
+  call void @llvm.dbg.value(metadata %dx.types.ResRet.i32 %RawBufferLoad9, i64 0, metadata !272, metadata !209), !dbg !273 ; var:"indexPair" !DIExpression() func:"GetVertexIndex"
+  %46 = extractvalue %dx.types.ResRet.i32 %RawBufferLoad9, 0, !dbg !271 ; line:93 col:26
+  %47 = load i32, i32* getelementptr inbounds ([1 x i32], [1 x i32]* @dx.nothing.a, i32 0, i32 0), !dbg !273 ; line:93 col:14
+  %48 = mul i32 %41, 16, !dbg !274 ; line:94 col:48
+  %49 = and i32 %48, 31, !dbg !275 ; line:94 col:33
+  %50 = lshr i32 %46, %49, !dbg !275 ; line:94 col:33
+  %51 = and i32 %50, 65535, !dbg !276 ; line:94 col:55
+  %52 = load i32, i32* getelementptr inbounds ([1 x i32], [1 x i32]* @dx.nothing.a, i32 0, i32 0), !dbg !277 ; line:94 col:14
+  call void @llvm.dbg.value(metadata i32 %51, i64 0, metadata !278, metadata !209), !dbg !277 ; var:"index" !DIExpression() func:"GetVertexIndex"
+  br label %"\01?GetVertexIndex@@YAIUMeshlet@@I@Z.exit", !dbg !279 ; line:96 col:9
+
+"\01?GetVertexIndex@@YAIUMeshlet@@I@Z.exit":      ; preds = %37, %40
+  %.03 = phi i32 [ %39, %37 ], [ %51, %40 ]
+  %53 = load i32, i32* getelementptr inbounds ([1 x i32], [1 x i32]* @dx.nothing.a, i32 0, i32 0), !dbg !280 ; line:98 col:1
+  %54 = load i32, i32* getelementptr inbounds ([1 x i32], [1 x i32]* @dx.nothing.a, i32 0, i32 0), !dbg !281 ; line:135 col:14
+  call void @llvm.dbg.value(metadata i32 %.03, i64 0, metadata !282, metadata !209), !dbg !281 ; var:"vertexIndex" !DIExpression() func:"main"
+  %55 = load i32, i32* getelementptr inbounds ([1 x i32], [1 x i32]* @dx.nothing.a, i32 0, i32 0), !dbg !283 ; line:136 col:23
+  call void @llvm.dbg.value(metadata i32 %.03, i64 0, metadata !284, metadata !209), !dbg !285 ; var:"vertexIndex" !DIExpression() func:"GetVertexAttributes"
+  call void @llvm.dbg.value(metadata i32 %1, i64 0, metadata !287, metadata !209), !dbg !288 ; var:"meshletIndex" !DIExpression() func:"GetVertexAttributes"
+  %56 = load i32, i32* getelementptr inbounds ([1 x i32], [1 x i32]* @dx.nothing.a, i32 0, i32 0), !dbg !289 ; line:102 col:16
+  %RawBufferLoad11 = call %dx.types.ResRet.f32 @dx.op.rawBufferLoad.f32(i32 139, %dx.types.Handle %Vertices_texture_structbuf, i32 %.03, i32 0, i8 7, i32 4), !dbg !289 ; line:102 col:16  ; RawBufferLoad(srv,index,elementOffset,mask,alignment)
+  %57 = extractvalue %dx.types.ResRet.f32 %RawBufferLoad11, 0, !dbg !289 ; line:102 col:16
+  %58 = extractvalue %dx.types.ResRet.f32 %RawBufferLoad11, 1, !dbg !289 ; line:102 col:16
+  %59 = extractvalue %dx.types.ResRet.f32 %RawBufferLoad11, 2, !dbg !289 ; line:102 col:16
+  call void @llvm.dbg.value(metadata float %57, i64 0, metadata !290, metadata !217), !dbg !291 ; var:"v" !DIExpression(DW_OP_bit_piece, 0, 32) func:"GetVertexAttributes"
+  call void @llvm.dbg.value(metadata float %58, i64 0, metadata !290, metadata !226), !dbg !291 ; var:"v" !DIExpression(DW_OP_bit_piece, 32, 32) func:"GetVertexAttributes"
+  call void @llvm.dbg.value(metadata float %59, i64 0, metadata !290, metadata !227), !dbg !291 ; var:"v" !DIExpression(DW_OP_bit_piece, 64, 32) func:"GetVertexAttributes"
+  %RawBufferLoad10 = call %dx.types.ResRet.f32 @dx.op.rawBufferLoad.f32(i32 139, %dx.types.Handle %Vertices_texture_structbuf, i32 %.03, i32 12, i8 7, i32 4), !dbg !289 ; line:102 col:16  ; RawBufferLoad(srv,index,elementOffset,mask,alignment)
+  %60 = extractvalue %dx.types.ResRet.f32 %RawBufferLoad10, 0, !dbg !289 ; line:102 col:16
+  %61 = extractvalue %dx.types.ResRet.f32 %RawBufferLoad10, 1, !dbg !289 ; line:102 col:16
+  %62 = extractvalue %dx.types.ResRet.f32 %RawBufferLoad10, 2, !dbg !289 ; line:102 col:16
+  call void @llvm.dbg.value(metadata float %60, i64 0, metadata !290, metadata !228), !dbg !291 ; var:"v" !DIExpression(DW_OP_bit_piece, 96, 32) func:"GetVertexAttributes"
+  call void @llvm.dbg.value(metadata float %61, i64 0, metadata !290, metadata !292), !dbg !291 ; var:"v" !DIExpression(DW_OP_bit_piece, 128, 32) func:"GetVertexAttributes"
+  call void @llvm.dbg.value(metadata float %62, i64 0, metadata !290, metadata !293), !dbg !291 ; var:"v" !DIExpression(DW_OP_bit_piece, 160, 32) func:"GetVertexAttributes"
+  %63 = call %dx.types.CBufRet.f32 @dx.op.cbufferLoadLegacy.f32(i32 59, %dx.types.Handle %Globals_cbuffer, i32 4), !dbg !294 ; line:105 col:58  ; CBufferLoadLegacy(handle,regIndex)
+  %64 = extractvalue %dx.types.CBufRet.f32 %63, 0, !dbg !294 ; line:105 col:58
+  %65 = extractvalue %dx.types.CBufRet.f32 %63, 1, !dbg !294 ; line:105 col:58
+  %66 = extractvalue %dx.types.CBufRet.f32 %63, 2, !dbg !294 ; line:105 col:58
+  %67 = extractvalue %dx.types.CBufRet.f32 %63, 3, !dbg !294 ; line:105 col:58
+  %68 = call %dx.types.CBufRet.f32 @dx.op.cbufferLoadLegacy.f32(i32 59, %dx.types.Handle %Globals_cbuffer, i32 5), !dbg !294 ; line:105 col:58  ; CBufferLoadLegacy(handle,regIndex)
+  %69 = extractvalue %dx.types.CBufRet.f32 %68, 0, !dbg !294 ; line:105 col:58
+  %70 = extractvalue %dx.types.CBufRet.f32 %68, 1, !dbg !294 ; line:105 col:58
+  %71 = extractvalue %dx.types.CBufRet.f32 %68, 2, !dbg !294 ; line:105 col:58
+  %72 = extractvalue %dx.types.CBufRet.f32 %68, 3, !dbg !294 ; line:105 col:58
+  %73 = call %dx.types.CBufRet.f32 @dx.op.cbufferLoadLegacy.f32(i32 59, %dx.types.Handle %Globals_cbuffer, i32 6), !dbg !294 ; line:105 col:58  ; CBufferLoadLegacy(handle,regIndex)
+  %74 = extractvalue %dx.types.CBufRet.f32 %73, 0, !dbg !294 ; line:105 col:58
+  %75 = extractvalue %dx.types.CBufRet.f32 %73, 1, !dbg !294 ; line:105 col:58
+  %76 = extractvalue %dx.types.CBufRet.f32 %73, 2, !dbg !294 ; line:105 col:58
+  %77 = extractvalue %dx.types.CBufRet.f32 %73, 3, !dbg !294 ; line:105 col:58
+  %78 = fmul fast float %57, %64, !dbg !295 ; line:105 col:23
+  %FMad46 = call float @dx.op.tertiary.f32(i32 46, float %58, float %65, float %78), !dbg !295 ; line:105 col:23  ; FMad(a,b,c)
+  %FMad45 = call float @dx.op.tertiary.f32(i32 46, float %59, float %66, float %FMad46), !dbg !295 ; line:105 col:23  ; FMad(a,b,c)
+  %FMad44 = call float @dx.op.tertiary.f32(i32 46, float 1.000000e+00, float %67, float %FMad45), !dbg !295 ; line:105 col:23  ; FMad(a,b,c)
+  %79 = fmul fast float %57, %69, !dbg !295 ; line:105 col:23
+  %FMad43 = call float @dx.op.tertiary.f32(i32 46, float %58, float %70, float %79), !dbg !295 ; line:105 col:23  ; FMad(a,b,c)
+  %FMad42 = call float @dx.op.tertiary.f32(i32 46, float %59, float %71, float %FMad43), !dbg !295 ; line:105 col:23  ; FMad(a,b,c)
+  %FMad41 = call float @dx.op.tertiary.f32(i32 46, float 1.000000e+00, float %72, float %FMad42), !dbg !295 ; line:105 col:23  ; FMad(a,b,c)
+  %80 = fmul fast float %57, %74, !dbg !295 ; line:105 col:23
+  %FMad40 = call float @dx.op.tertiary.f32(i32 46, float %58, float %75, float %80), !dbg !295 ; line:105 col:23  ; FMad(a,b,c)
+  %FMad39 = call float @dx.op.tertiary.f32(i32 46, float %59, float %76, float %FMad40), !dbg !295 ; line:105 col:23  ; FMad(a,b,c)
+  %FMad38 = call float @dx.op.tertiary.f32(i32 46, float 1.000000e+00, float %77, float %FMad39), !dbg !295 ; line:105 col:23  ; FMad(a,b,c)
+  %81 = load i32, i32* getelementptr inbounds ([1 x i32], [1 x i32]* @dx.nothing.a, i32 0, i32 0), !dbg !295 ; line:105 col:23
+  %82 = load i32, i32* getelementptr inbounds ([1 x i32], [1 x i32]* @dx.nothing.a, i32 0, i32 0), !dbg !296 ; line:105 col:21
+  call void @llvm.dbg.value(metadata float %FMad44, i64 0, metadata !297, metadata !292), !dbg !298 ; var:"vout" !DIExpression(DW_OP_bit_piece, 128, 32) func:"GetVertexAttributes"
+  call void @llvm.dbg.value(metadata float %FMad41, i64 0, metadata !297, metadata !293), !dbg !298 ; var:"vout" !DIExpression(DW_OP_bit_piece, 160, 32) func:"GetVertexAttributes"
+  call void @llvm.dbg.value(metadata float %FMad38, i64 0, metadata !297, metadata !299), !dbg !298 ; var:"vout" !DIExpression(DW_OP_bit_piece, 192, 32) func:"GetVertexAttributes"
+  call void @llvm.dbg.value(metadata float %FMad44, i64 0, metadata !297, metadata !292), !dbg !298 ; var:"vout" !DIExpression(DW_OP_bit_piece, 128, 32) func:"GetVertexAttributes"
+  call void @llvm.dbg.value(metadata float %FMad41, i64 0, metadata !297, metadata !293), !dbg !298 ; var:"vout" !DIExpression(DW_OP_bit_piece, 160, 32) func:"GetVertexAttributes"
+  call void @llvm.dbg.value(metadata float %FMad38, i64 0, metadata !297, metadata !299), !dbg !298 ; var:"vout" !DIExpression(DW_OP_bit_piece, 192, 32) func:"GetVertexAttributes"
+  %83 = call %dx.types.CBufRet.f32 @dx.op.cbufferLoadLegacy.f32(i32 59, %dx.types.Handle %Globals_cbuffer, i32 8), !dbg !300 ; line:106 col:58  ; CBufferLoadLegacy(handle,regIndex)
+  %84 = extractvalue %dx.types.CBufRet.f32 %83, 0, !dbg !300 ; line:106 col:58
+  %85 = extractvalue %dx.types.CBufRet.f32 %83, 1, !dbg !300 ; line:106 col:58
+  %86 = extractvalue %dx.types.CBufRet.f32 %83, 2, !dbg !300 ; line:106 col:58
+  %87 = extractvalue %dx.types.CBufRet.f32 %83, 3, !dbg !300 ; line:106 col:58
+  %88 = call %dx.types.CBufRet.f32 @dx.op.cbufferLoadLegacy.f32(i32 59, %dx.types.Handle %Globals_cbuffer, i32 9), !dbg !300 ; line:106 col:58  ; CBufferLoadLegacy(handle,regIndex)
+  %89 = extractvalue %dx.types.CBufRet.f32 %88, 0, !dbg !300 ; line:106 col:58
+  %90 = extractvalue %dx.types.CBufRet.f32 %88, 1, !dbg !300 ; line:106 col:58
+  %91 = extractvalue %dx.types.CBufRet.f32 %88, 2, !dbg !300 ; line:106 col:58
+  %92 = extractvalue %dx.types.CBufRet.f32 %88, 3, !dbg !300 ; line:106 col:58
+  %93 = call %dx.types.CBufRet.f32 @dx.op.cbufferLoadLegacy.f32(i32 59, %dx.types.Handle %Globals_cbuffer, i32 10), !dbg !300 ; line:106 col:58  ; CBufferLoadLegacy(handle,regIndex)
+  %94 = extractvalue %dx.types.CBufRet.f32 %93, 0, !dbg !300 ; line:106 col:58
+  %95 = extractvalue %dx.types.CBufRet.f32 %93, 1, !dbg !300 ; line:106 col:58
+  %96 = extractvalue %dx.types.CBufRet.f32 %93, 2, !dbg !300 ; line:106 col:58
+  %97 = extractvalue %dx.types.CBufRet.f32 %93, 3, !dbg !300 ; line:106 col:58
+  %98 = call %dx.types.CBufRet.f32 @dx.op.cbufferLoadLegacy.f32(i32 59, %dx.types.Handle %Globals_cbuffer, i32 11), !dbg !300 ; line:106 col:58  ; CBufferLoadLegacy(handle,regIndex)
+  %99 = extractvalue %dx.types.CBufRet.f32 %98, 0, !dbg !300 ; line:106 col:58
+  %100 = extractvalue %dx.types.CBufRet.f32 %98, 1, !dbg !300 ; line:106 col:58
+  %101 = extractvalue %dx.types.CBufRet.f32 %98, 2, !dbg !300 ; line:106 col:58
+  %102 = extractvalue %dx.types.CBufRet.f32 %98, 3, !dbg !300 ; line:106 col:58
+  %103 = fmul fast float %57, %84, !dbg !301 ; line:106 col:23
+  %FMad34 = call float @dx.op.tertiary.f32(i32 46, float %58, float %85, float %103), !dbg !301 ; line:106 col:23  ; FMad(a,b,c)
+  %FMad33 = call float @dx.op.tertiary.f32(i32 46, float %59, float %86, float %FMad34), !dbg !301 ; line:106 col:23  ; FMad(a,b,c)
+  %FMad32 = call float @dx.op.tertiary.f32(i32 46, float 1.000000e+00, float %87, float %FMad33), !dbg !301 ; line:106 col:23  ; FMad(a,b,c)
+  %104 = fmul fast float %57, %89, !dbg !301 ; line:106 col:23
+  %FMad31 = call float @dx.op.tertiary.f32(i32 46, float %58, float %90, float %104), !dbg !301 ; line:106 col:23  ; FMad(a,b,c)
+  %FMad30 = call float @dx.op.tertiary.f32(i32 46, float %59, float %91, float %FMad31), !dbg !301 ; line:106 col:23  ; FMad(a,b,c)
+  %FMad29 = call float @dx.op.tertiary.f32(i32 46, float 1.000000e+00, float %92, float %FMad30), !dbg !301 ; line:106 col:23  ; FMad(a,b,c)
+  %105 = fmul fast float %57, %94, !dbg !301 ; line:106 col:23
+  %FMad28 = call float @dx.op.tertiary.f32(i32 46, float %58, float %95, float %105), !dbg !301 ; line:106 col:23  ; FMad(a,b,c)
+  %FMad27 = call float @dx.op.tertiary.f32(i32 46, float %59, float %96, float %FMad28), !dbg !301 ; line:106 col:23  ; FMad(a,b,c)
+  %FMad26 = call float @dx.op.tertiary.f32(i32 46, float 1.000000e+00, float %97, float %FMad27), !dbg !301 ; line:106 col:23  ; FMad(a,b,c)
+  %106 = fmul fast float %57, %99, !dbg !301 ; line:106 col:23
+  %FMad25 = call float @dx.op.tertiary.f32(i32 46, float %58, float %100, float %106), !dbg !301 ; line:106 col:23  ; FMad(a,b,c)
+  %FMad24 = call float @dx.op.tertiary.f32(i32 46, float %59, float %101, float %FMad25), !dbg !301 ; line:106 col:23  ; FMad(a,b,c)
+  %FMad23 = call float @dx.op.tertiary.f32(i32 46, float 1.000000e+00, float %102, float %FMad24), !dbg !301 ; line:106 col:23  ; FMad(a,b,c)
+  %107 = load i32, i32* getelementptr inbounds ([1 x i32], [1 x i32]* @dx.nothing.a, i32 0, i32 0), !dbg !302 ; line:106 col:21
+  call void @llvm.dbg.value(metadata float %FMad32, i64 0, metadata !297, metadata !217), !dbg !298 ; var:"vout" !DIExpression(DW_OP_bit_piece, 0, 32) func:"GetVertexAttributes"
+  call void @llvm.dbg.value(metadata float %FMad29, i64 0, metadata !297, metadata !226), !dbg !298 ; var:"vout" !DIExpression(DW_OP_bit_piece, 32, 32) func:"GetVertexAttributes"
+  call void @llvm.dbg.value(metadata float %FMad26, i64 0, metadata !297, metadata !227), !dbg !298 ; var:"vout" !DIExpression(DW_OP_bit_piece, 64, 32) func:"GetVertexAttributes"
+  call void @llvm.dbg.value(metadata float %FMad23, i64 0, metadata !297, metadata !228), !dbg !298 ; var:"vout" !DIExpression(DW_OP_bit_piece, 96, 32) func:"GetVertexAttributes"
+  %108 = call %dx.types.CBufRet.f32 @dx.op.cbufferLoadLegacy.f32(i32 59, %dx.types.Handle %Globals_cbuffer, i32 0), !dbg !303 ; line:107 col:52  ; CBufferLoadLegacy(handle,regIndex)
+  %109 = extractvalue %dx.types.CBufRet.f32 %108, 0, !dbg !303 ; line:107 col:52
+  %110 = extractvalue %dx.types.CBufRet.f32 %108, 1, !dbg !303 ; line:107 col:52
+  %111 = extractvalue %dx.types.CBufRet.f32 %108, 2, !dbg !303 ; line:107 col:52
+  %112 = extractvalue %dx.types.CBufRet.f32 %108, 3, !dbg !303 ; line:107 col:52
+  %113 = call %dx.types.CBufRet.f32 @dx.op.cbufferLoadLegacy.f32(i32 59, %dx.types.Handle %Globals_cbuffer, i32 1), !dbg !303 ; line:107 col:52  ; CBufferLoadLegacy(handle,regIndex)
+  %114 = extractvalue %dx.types.CBufRet.f32 %113, 0, !dbg !303 ; line:107 col:52
+  %115 = extractvalue %dx.types.CBufRet.f32 %113, 1, !dbg !303 ; line:107 col:52
+  %116 = extractvalue %dx.types.CBufRet.f32 %113, 2, !dbg !303 ; line:107 col:52
+  %117 = extractvalue %dx.types.CBufRet.f32 %113, 3, !dbg !303 ; line:107 col:52
+  %118 = call %dx.types.CBufRet.f32 @dx.op.cbufferLoadLegacy.f32(i32 59, %dx.types.Handle %Globals_cbuffer, i32 2), !dbg !303 ; line:107 col:52  ; CBufferLoadLegacy(handle,regIndex)
+  %119 = extractvalue %dx.types.CBufRet.f32 %118, 0, !dbg !303 ; line:107 col:52
+  %120 = extractvalue %dx.types.CBufRet.f32 %118, 1, !dbg !303 ; line:107 col:52
+  %121 = extractvalue %dx.types.CBufRet.f32 %118, 2, !dbg !303 ; line:107 col:52
+  %122 = extractvalue %dx.types.CBufRet.f32 %118, 3, !dbg !303 ; line:107 col:52
+  %123 = fmul fast float %60, %109, !dbg !304 ; line:107 col:19
+  %FMad22 = call float @dx.op.tertiary.f32(i32 46, float %61, float %110, float %123), !dbg !304 ; line:107 col:19  ; FMad(a,b,c)
+  %FMad21 = call float @dx.op.tertiary.f32(i32 46, float %62, float %111, float %FMad22), !dbg !304 ; line:107 col:19  ; FMad(a,b,c)
+  %FMad20 = call float @dx.op.tertiary.f32(i32 46, float 0.000000e+00, float %112, float %FMad21), !dbg !304 ; line:107 col:19  ; FMad(a,b,c)
+  %124 = fmul fast float %60, %114, !dbg !304 ; line:107 col:19
+  %FMad19 = call float @dx.op.tertiary.f32(i32 46, float %61, float %115, float %124), !dbg !304 ; line:107 col:19  ; FMad(a,b,c)
+  %FMad18 = call float @dx.op.tertiary.f32(i32 46, float %62, float %116, float %FMad19), !dbg !304 ; line:107 col:19  ; FMad(a,b,c)
+  %FMad17 = call float @dx.op.tertiary.f32(i32 46, float 0.000000e+00, float %117, float %FMad18), !dbg !304 ; line:107 col:19  ; FMad(a,b,c)
+  %125 = fmul fast float %60, %119, !dbg !304 ; line:107 col:19
+  %FMad16 = call float @dx.op.tertiary.f32(i32 46, float %61, float %120, float %125), !dbg !304 ; line:107 col:19  ; FMad(a,b,c)
+  %FMad15 = call float @dx.op.tertiary.f32(i32 46, float %62, float %121, float %FMad16), !dbg !304 ; line:107 col:19  ; FMad(a,b,c)
+  %FMad14 = call float @dx.op.tertiary.f32(i32 46, float 0.000000e+00, float %122, float %FMad15), !dbg !304 ; line:107 col:19  ; FMad(a,b,c)
+  %126 = load i32, i32* getelementptr inbounds ([1 x i32], [1 x i32]* @dx.nothing.a, i32 0, i32 0), !dbg !304 ; line:107 col:19
+  %127 = load i32, i32* getelementptr inbounds ([1 x i32], [1 x i32]* @dx.nothing.a, i32 0, i32 0), !dbg !305 ; line:107 col:17
+  call void @llvm.dbg.value(metadata float %FMad20, i64 0, metadata !297, metadata !306), !dbg !298 ; var:"vout" !DIExpression(DW_OP_bit_piece, 224, 32) func:"GetVertexAttributes"
+  call void @llvm.dbg.value(metadata float %FMad17, i64 0, metadata !297, metadata !307), !dbg !298 ; var:"vout" !DIExpression(DW_OP_bit_piece, 256, 32) func:"GetVertexAttributes"
+  call void @llvm.dbg.value(metadata float %FMad14, i64 0, metadata !297, metadata !308), !dbg !298 ; var:"vout" !DIExpression(DW_OP_bit_piece, 288, 32) func:"GetVertexAttributes"
+  call void @llvm.dbg.value(metadata float %FMad20, i64 0, metadata !297, metadata !306), !dbg !298 ; var:"vout" !DIExpression(DW_OP_bit_piece, 224, 32) func:"GetVertexAttributes"
+  call void @llvm.dbg.value(metadata float %FMad17, i64 0, metadata !297, metadata !307), !dbg !298 ; var:"vout" !DIExpression(DW_OP_bit_piece, 256, 32) func:"GetVertexAttributes"
+  call void @llvm.dbg.value(metadata float %FMad14, i64 0, metadata !297, metadata !308), !dbg !298 ; var:"vout" !DIExpression(DW_OP_bit_piece, 288, 32) func:"GetVertexAttributes"
+  %128 = load i32, i32* getelementptr inbounds ([1 x i32], [1 x i32]* @dx.nothing.a, i32 0, i32 0), !dbg !309 ; line:108 col:23
+  call void @llvm.dbg.value(metadata i32 %1, i64 0, metadata !297, metadata !310), !dbg !298 ; var:"vout" !DIExpression(DW_OP_bit_piece, 320, 32) func:"GetVertexAttributes"
+  %129 = load i32, i32* getelementptr inbounds ([1 x i32], [1 x i32]* @dx.nothing.a, i32 0, i32 0), !dbg !311 ; line:110 col:5
+  %130 = load i32, i32* getelementptr inbounds ([1 x i32], [1 x i32]* @dx.nothing.a, i32 0, i32 0), !dbg !283 ; line:136 col:23
+  call void @dx.op.storeVertexOutput.f32(i32 171, i32 0, i32 0, i8 0, float %FMad32, i32 %2), !dbg !283 ; line:136 col:23  ; StoreVertexOutput(outputSigId,rowIndex,colIndex,value,vertexIndex)
+  call void @dx.op.storeVertexOutput.f32(i32 171, i32 0, i32 0, i8 1, float %FMad29, i32 %2), !dbg !283 ; line:136 col:23  ; StoreVertexOutput(outputSigId,rowIndex,colIndex,value,vertexIndex)
+  call void @dx.op.storeVertexOutput.f32(i32 171, i32 0, i32 0, i8 2, float %FMad26, i32 %2), !dbg !283 ; line:136 col:23  ; StoreVertexOutput(outputSigId,rowIndex,colIndex,value,vertexIndex)
+  call void @dx.op.storeVertexOutput.f32(i32 171, i32 0, i32 0, i8 3, float %FMad23, i32 %2), !dbg !283 ; line:136 col:23  ; StoreVertexOutput(outputSigId,rowIndex,colIndex,value,vertexIndex)
+  call void @dx.op.storeVertexOutput.f32(i32 171, i32 1, i32 0, i8 0, float %FMad44, i32 %2), !dbg !283 ; line:136 col:23  ; StoreVertexOutput(outputSigId,rowIndex,colIndex,value,vertexIndex)
+  call void @dx.op.storeVertexOutput.f32(i32 171, i32 1, i32 0, i8 1, float %FMad41, i32 %2), !dbg !283 ; line:136 col:23  ; StoreVertexOutput(outputSigId,rowIndex,colIndex,value,vertexIndex)
+  call void @dx.op.storeVertexOutput.f32(i32 171, i32 1, i32 0, i8 2, float %FMad38, i32 %2), !dbg !283 ; line:136 col:23  ; StoreVertexOutput(outputSigId,rowIndex,colIndex,value,vertexIndex)
+  call void @dx.op.storeVertexOutput.f32(i32 171, i32 2, i32 0, i8 0, float %FMad20, i32 %2), !dbg !283 ; line:136 col:23  ; StoreVertexOutput(outputSigId,rowIndex,colIndex,value,vertexIndex)
+  call void @dx.op.storeVertexOutput.f32(i32 171, i32 2, i32 0, i8 1, float %FMad17, i32 %2), !dbg !283 ; line:136 col:23  ; StoreVertexOutput(outputSigId,rowIndex,colIndex,value,vertexIndex)
+  call void @dx.op.storeVertexOutput.f32(i32 171, i32 2, i32 0, i8 2, float %FMad14, i32 %2), !dbg !283 ; line:136 col:23  ; StoreVertexOutput(outputSigId,rowIndex,colIndex,value,vertexIndex)
+  call void @dx.op.storeVertexOutput.i32(i32 171, i32 3, i32 0, i8 0, i32 %1, i32 %2), !dbg !283 ; line:136 col:23  ; StoreVertexOutput(outputSigId,rowIndex,colIndex,value,vertexIndex)
+  br label %131, !dbg !312 ; line:137 col:5
+
+; <label>:131                                     ; preds = %"\01?GetVertexIndex@@YAIUMeshlet@@I@Z.exit", %27
+  %132 = load i32, i32* getelementptr inbounds ([1 x i32], [1 x i32]* @dx.nothing.a, i32 0, i32 0), !dbg !313 ; line:138 col:1
+  ret void, !dbg !313 ; line:138 col:1
+}
+
+; Function Attrs: nounwind readnone
+declare void @llvm.dbg.value(metadata, i64, metadata, metadata) #0
+
+; Function Attrs: nounwind
+declare void @dx.op.emitIndices(i32, i32, i32, i32, i32) #1
+
+; Function Attrs: nounwind readnone
+declare i32 @dx.op.threadIdInGroup.i32(i32, i32) #0
+
+; Function Attrs: nounwind readnone
+declare i32 @dx.op.groupId.i32(i32, i32) #0
+
+; Function Attrs: nounwind
+declare void @dx.op.storeVertexOutput.f32(i32, i32, i32, i8, float, i32) #1
+
+; Function Attrs: nounwind
+declare void @dx.op.storeVertexOutput.i32(i32, i32, i32, i8, i32, i32) #1
+
+; Function Attrs: nounwind readonly
+declare %dx.types.ResRet.i32 @dx.op.rawBufferLoad.i32(i32, %dx.types.Handle, i32, i32, i8, i32) #2
+
+; Function Attrs: nounwind
+declare void @dx.op.setMeshOutputCounts(i32, i32, i32) #1
+
+; Function Attrs: nounwind readonly
+declare %dx.types.ResRet.f32 @dx.op.rawBufferLoad.f32(i32, %dx.types.Handle, i32, i32, i8, i32) #2
+
+; Function Attrs: nounwind readonly
+declare %dx.types.CBufRet.f32 @dx.op.cbufferLoadLegacy.f32(i32, %dx.types.Handle, i32) #2
+
+; Function Attrs: nounwind readonly
+declare %dx.types.CBufRet.i32 @dx.op.cbufferLoadLegacy.i32(i32, %dx.types.Handle, i32) #2
+
+; Function Attrs: nounwind readnone
+declare float @dx.op.tertiary.f32(i32, float, float, float) #0
+
+; Function Attrs: nounwind readonly
+declare %dx.types.Handle @dx.op.createHandle(i32, i8, i32, i32, i1) #2
+
+attributes #0 = { nounwind readnone }
+attributes #1 = { nounwind }
+attributes #2 = { nounwind readonly }
+
+!llvm.dbg.cu = !{!0}
+!llvm.module.flags = !{!128, !129}
+!llvm.ident = !{!130}
+!dx.source.contents = !{!131}
+!dx.source.defines = !{!2}
+!dx.source.mainFileName = !{!132}
+!dx.source.args = !{!133}
+!dx.version = !{!134}
+!dx.valver = !{!135}
+!dx.shaderModel = !{!136}
+!dx.resources = !{!137}
+!dx.typeAnnotations = !{!149, !185}
+!dx.viewIdState = !{!188}
+!dx.entryPoints = !{!189}
+
+!0 = distinct !DICompileUnit(language: DW_LANG_C_plus_plus, file: !1, producer: "clang version 3.7 (tags/RELEASE_370/final)", isOptimized: false, runtimeVersion: 0, emissionKind: 1, enums: !2, retainedTypes: !3, subprograms: !26, globals: !70)
+!1 = !DIFile(filename: "Lib\5CShader\5CMeshletMS.hlsl", directory: "")
+!2 = !{}
+!3 = !{!4, !15}
+!4 = !DIDerivedType(tag: DW_TAG_typedef, name: "uint3", file: !1, baseType: !5)
+!5 = !DICompositeType(tag: DW_TAG_class_type, name: "vector<unsigned int, 3>", file: !1, size: 96, align: 32, elements: !6, templateParams: !11)
+!6 = !{!7, !9, !10}
+!7 = !DIDerivedType(tag: DW_TAG_member, name: "x", scope: !5, file: !1, baseType: !8, size: 32, align: 32, flags: DIFlagPublic)
+!8 = !DIBasicType(name: "unsigned int", size: 32, align: 32, encoding: DW_ATE_unsigned)
+!9 = !DIDerivedType(tag: DW_TAG_member, name: "y", scope: !5, file: !1, baseType: !8, size: 32, align: 32, offset: 32, flags: DIFlagPublic)
+!10 = !DIDerivedType(tag: DW_TAG_member, name: "z", scope: !5, file: !1, baseType: !8, size: 32, align: 32, offset: 64, flags: DIFlagPublic)
+!11 = !{!12, !13}
+!12 = !DITemplateTypeParameter(name: "element", type: !8)
+!13 = !DITemplateValueParameter(name: "element_count", type: !14, value: i32 3)
+!14 = !DIBasicType(name: "int", size: 32, align: 32, encoding: DW_ATE_signed)
+!15 = !DIDerivedType(tag: DW_TAG_typedef, name: "float4", file: !1, baseType: !16)
+!16 = !DICompositeType(tag: DW_TAG_class_type, name: "vector<float, 4>", file: !1, size: 128, align: 32, elements: !17, templateParams: !23)
+!17 = !{!18, !20, !21, !22}
+!18 = !DIDerivedType(tag: DW_TAG_member, name: "x", scope: !16, file: !1, baseType: !19, size: 32, align: 32, flags: DIFlagPublic)
+!19 = !DIBasicType(name: "float", size: 32, align: 32, encoding: DW_ATE_float)
+!20 = !DIDerivedType(tag: DW_TAG_member, name: "y", scope: !16, file: !1, baseType: !19, size: 32, align: 32, offset: 32, flags: DIFlagPublic)
+!21 = !DIDerivedType(tag: DW_TAG_member, name: "z", scope: !16, file: !1, baseType: !19, size: 32, align: 32, offset: 64, flags: DIFlagPublic)
+!22 = !DIDerivedType(tag: DW_TAG_member, name: "w", scope: !16, file: !1, baseType: !19, size: 32, align: 32, offset: 96, flags: DIFlagPublic)
+!23 = !{!24, !25}
+!24 = !DITemplateTypeParameter(name: "element", type: !19)
+!25 = !DITemplateValueParameter(name: "element_count", type: !14, value: i32 4)
+!26 = !{!27, !52, !61, !64, !67}
+!27 = !DISubprogram(name: "main", scope: !1, file: !1, line: 117, type: !28, isLocal: false, isDefinition: true, scopeLine: 123, flags: DIFlagPrototyped, isOptimized: false, function: void ()* @main)
+!28 = !DISubroutineType(types: !29)
+!29 = !{null, !30, !30, !31, !35}
+!30 = !DIDerivedType(tag: DW_TAG_typedef, name: "uint", file: !1, baseType: !8)
+!31 = !DIDerivedType(tag: DW_TAG_restrict_type, baseType: !32)
+!32 = !DICompositeType(tag: DW_TAG_array_type, baseType: !4, size: 12096, align: 32, elements: !33)
+!33 = !{!34}
+!34 = !DISubrange(count: 126)
+!35 = !DIDerivedType(tag: DW_TAG_restrict_type, baseType: !36)
+!36 = !DICompositeType(tag: DW_TAG_array_type, baseType: !37, size: 22528, align: 32, elements: !50)
+!37 = !DICompositeType(tag: DW_TAG_structure_type, name: "VertexOut", file: !1, line: 39, size: 352, align: 32, elements: !38)
+!38 = !{!39, !40, !48, !49}
+!39 = !DIDerivedType(tag: DW_TAG_member, name: "PositionHS", scope: !37, file: !1, line: 41, baseType: !15, size: 128, align: 32)
+!40 = !DIDerivedType(tag: DW_TAG_member, name: "PositionVS", scope: !37, file: !1, line: 42, baseType: !41, size: 96, align: 32, offset: 128)
+!41 = !DIDerivedType(tag: DW_TAG_typedef, name: "float3", file: !1, baseType: !42)
+!42 = !DICompositeType(tag: DW_TAG_class_type, name: "vector<float, 3>", file: !1, size: 96, align: 32, elements: !43, templateParams: !47)
+!43 = !{!44, !45, !46}
+!44 = !DIDerivedType(tag: DW_TAG_member, name: "x", scope: !42, file: !1, baseType: !19, size: 32, align: 32, flags: DIFlagPublic)
+!45 = !DIDerivedType(tag: DW_TAG_member, name: "y", scope: !42, file: !1, baseType: !19, size: 32, align: 32, offset: 32, flags: DIFlagPublic)
+!46 = !DIDerivedType(tag: DW_TAG_member, name: "z", scope: !42, file: !1, baseType: !19, size: 32, align: 32, offset: 64, flags: DIFlagPublic)
+!47 = !{!24, !13}
+!48 = !DIDerivedType(tag: DW_TAG_member, name: "Normal", scope: !37, file: !1, line: 43, baseType: !41, size: 96, align: 32, offset: 224)
+!49 = !DIDerivedType(tag: DW_TAG_member, name: "MeshletIndex", scope: !37, file: !1, line: 44, baseType: !30, size: 32, align: 32, offset: 320)
+!50 = !{!51}
+!51 = !DISubrange(count: 64)
+!52 = !DISubprogram(name: "GetPrimitive", linkageName: "\01?GetPrimitive@@YA?AV?$vector@I$02@@UMeshlet@@I@Z", scope: !1, file: !1, line: 73, type: !53, isLocal: false, isDefinition: true, scopeLine: 74, flags: DIFlagPrototyped, isOptimized: false)
+!53 = !DISubroutineType(types: !54)
+!54 = !{!4, !55, !30}
+!55 = !DICompositeType(tag: DW_TAG_structure_type, name: "Meshlet", file: !1, line: 47, size: 128, align: 32, elements: !56)
+!56 = !{!57, !58, !59, !60}
+!57 = !DIDerivedType(tag: DW_TAG_member, name: "VertCount", scope: !55, file: !1, line: 49, baseType: !30, size: 32, align: 32)
+!58 = !DIDerivedType(tag: DW_TAG_member, name: "VertOffset", scope: !55, file: !1, line: 50, baseType: !30, size: 32, align: 32, offset: 32)
+!59 = !DIDerivedType(tag: DW_TAG_member, name: "PrimCount", scope: !55, file: !1, line: 51, baseType: !30, size: 32, align: 32, offset: 64)
+!60 = !DIDerivedType(tag: DW_TAG_member, name: "PrimOffset", scope: !55, file: !1, line: 52, baseType: !30, size: 32, align: 32, offset: 96)
+!61 = !DISubprogram(name: "UnpackPrimitive", linkageName: "\01?UnpackPrimitive@@YA?AV?$vector@I$02@@I@Z", scope: !1, file: !1, line: 67, type: !62, isLocal: false, isDefinition: true, scopeLine: 68, flags: DIFlagPrototyped, isOptimized: false)
+!62 = !DISubroutineType(types: !63)
+!63 = !{!4, !30}
+!64 = !DISubprogram(name: "GetVertexIndex", linkageName: "\01?GetVertexIndex@@YAIUMeshlet@@I@Z", scope: !1, file: !1, line: 78, type: !65, isLocal: false, isDefinition: true, scopeLine: 79, flags: DIFlagPrototyped, isOptimized: false)
+!65 = !DISubroutineType(types: !66)
+!66 = !{!30, !55, !30}
+!67 = !DISubprogram(name: "GetVertexAttributes", linkageName: "\01?GetVertexAttributes@@YA?AUVertexOut@@II@Z", scope: !1, file: !1, line: 100, type: !68, isLocal: false, isDefinition: true, scopeLine: 101, flags: DIFlagPrototyped, isOptimized: false)
+!68 = !DISubroutineType(types: !69)
+!69 = !{!37, !30, !30}
+!70 = !{!71, !103, !111, !119, !123, !125}
+!71 = !DIGlobalVariable(name: "Globals", linkageName: "\01?Globals@@3U?$ConstantBuffer@UConstants@@@@A", scope: !0, file: !1, line: 55, type: !72, isLocal: false, isDefinition: true)
+!72 = !DICompositeType(tag: DW_TAG_structure_type, name: "ConstantBuffer<Constants>", file: !1, line: 55, size: 32, align: 32, elements: !2, templateParams: !73)
+!73 = !{!74}
+!74 = !DITemplateTypeParameter(name: "T", type: !75)
+!75 = !DICompositeType(tag: DW_TAG_structure_type, name: "Constants", file: !1, line: 19, size: 1568, align: 32, elements: !76)
+!76 = !{!77, !100, !101, !102}
+!77 = !DIDerivedType(tag: DW_TAG_member, name: "World", scope: !75, file: !1, line: 21, baseType: !78, size: 512, align: 32)
+!78 = !DIDerivedType(tag: DW_TAG_typedef, name: "float4x4", file: !1, line: 55, baseType: !79)
+!79 = !DICompositeType(tag: DW_TAG_class_type, name: "matrix<float, 4, 4>", file: !1, line: 55, size: 512, align: 32, elements: !80, templateParams: !97)
+!80 = !{!81, !82, !83, !84, !85, !86, !87, !88, !89, !90, !91, !92, !93, !94, !95, !96}
+!81 = !DIDerivedType(tag: DW_TAG_member, name: "_11", scope: !79, file: !1, line: 55, baseType: !19, size: 32, align: 32, flags: DIFlagPublic)
+!82 = !DIDerivedType(tag: DW_TAG_member, name: "_12", scope: !79, file: !1, line: 55, baseType: !19, size: 32, align: 32, offset: 32, flags: DIFlagPublic)
+!83 = !DIDerivedType(tag: DW_TAG_member, name: "_13", scope: !79, file: !1, line: 55, baseType: !19, size: 32, align: 32, offset: 64, flags: DIFlagPublic)
+!84 = !DIDerivedType(tag: DW_TAG_member, name: "_14", scope: !79, file: !1, line: 55, baseType: !19, size: 32, align: 32, offset: 96, flags: DIFlagPublic)
+!85 = !DIDerivedType(tag: DW_TAG_member, name: "_21", scope: !79, file: !1, line: 55, baseType: !19, size: 32, align: 32, offset: 128, flags: DIFlagPublic)
+!86 = !DIDerivedType(tag: DW_TAG_member, name: "_22", scope: !79, file: !1, line: 55, baseType: !19, size: 32, align: 32, offset: 160, flags: DIFlagPublic)
+!87 = !DIDerivedType(tag: DW_TAG_member, name: "_23", scope: !79, file: !1, line: 55, baseType: !19, size: 32, align: 32, offset: 192, flags: DIFlagPublic)
+!88 = !DIDerivedType(tag: DW_TAG_member, name: "_24", scope: !79, file: !1, line: 55, baseType: !19, size: 32, align: 32, offset: 224, flags: DIFlagPublic)
+!89 = !DIDerivedType(tag: DW_TAG_member, name: "_31", scope: !79, file: !1, line: 55, baseType: !19, size: 32, align: 32, offset: 256, flags: DIFlagPublic)
+!90 = !DIDerivedType(tag: DW_TAG_member, name: "_32", scope: !79, file: !1, line: 55, baseType: !19, size: 32, align: 32, offset: 288, flags: DIFlagPublic)
+!91 = !DIDerivedType(tag: DW_TAG_member, name: "_33", scope: !79, file: !1, line: 55, baseType: !19, size: 32, align: 32, offset: 320, flags: DIFlagPublic)
+!92 = !DIDerivedType(tag: DW_TAG_member, name: "_34", scope: !79, file: !1, line: 55, baseType: !19, size: 32, align: 32, offset: 352, flags: DIFlagPublic)
+!93 = !DIDerivedType(tag: DW_TAG_member, name: "_41", scope: !79, file: !1, line: 55, baseType: !19, size: 32, align: 32, offset: 384, flags: DIFlagPublic)
+!94 = !DIDerivedType(tag: DW_TAG_member, name: "_42", scope: !79, file: !1, line: 55, baseType: !19, size: 32, align: 32, offset: 416, flags: DIFlagPublic)
+!95 = !DIDerivedType(tag: DW_TAG_member, name: "_43", scope: !79, file: !1, line: 55, baseType: !19, size: 32, align: 32, offset: 448, flags: DIFlagPublic)
+!96 = !DIDerivedType(tag: DW_TAG_member, name: "_44", scope: !79, file: !1, line: 55, baseType: !19, size: 32, align: 32, offset: 480, flags: DIFlagPublic)
+!97 = !{!24, !98, !99}
+!98 = !DITemplateValueParameter(name: "row_count", type: !14, value: i32 4)
+!99 = !DITemplateValueParameter(name: "col_count", type: !14, value: i32 4)
+!100 = !DIDerivedType(tag: DW_TAG_member, name: "WorldView", scope: !75, file: !1, line: 22, baseType: !78, size: 512, align: 32, offset: 512)
+!101 = !DIDerivedType(tag: DW_TAG_member, name: "WorldViewProj", scope: !75, file: !1, line: 23, baseType: !78, size: 512, align: 32, offset: 1024)
+!102 = !DIDerivedType(tag: DW_TAG_member, name: "DrawMeshlets", scope: !75, file: !1, line: 24, baseType: !30, size: 32, align: 32, offset: 1536)
+!103 = !DIGlobalVariable(name: "meshInfo", linkageName: "\01?meshInfo@@3U?$ConstantBuffer@UMeshInfo@@@@A", scope: !0, file: !1, line: 56, type: !104, isLocal: false, isDefinition: true)
+!104 = !DICompositeType(tag: DW_TAG_structure_type, name: "ConstantBuffer<MeshInfo>", file: !1, line: 56, size: 32, align: 32, elements: !2, templateParams: !105)
+!105 = !{!106}
+!106 = !DITemplateTypeParameter(name: "T", type: !107)
+!107 = !DICompositeType(tag: DW_TAG_structure_type, name: "MeshInfo", file: !1, line: 27, size: 64, align: 32, elements: !108)
+!108 = !{!109, !110}
+!109 = !DIDerivedType(tag: DW_TAG_member, name: "IndexBytes", scope: !107, file: !1, line: 29, baseType: !30, size: 32, align: 32)
+!110 = !DIDerivedType(tag: DW_TAG_member, name: "MeshletOffset", scope: !107, file: !1, line: 30, baseType: !30, size: 32, align: 32, offset: 32)
+!111 = !DIGlobalVariable(name: "Vertices", linkageName: "\01?Vertices@@3V?$StructuredBuffer@UVertex@@@@A", scope: !0, file: !1, line: 58, type: !112, isLocal: false, isDefinition: true)
+!112 = !DICompositeType(tag: DW_TAG_class_type, name: "StructuredBuffer<Vertex>", file: !1, line: 58, size: 192, align: 32, elements: !2, templateParams: !113)
+!113 = !{!114}
+!114 = !DITemplateTypeParameter(name: "element", type: !115)
+!115 = !DICompositeType(tag: DW_TAG_structure_type, name: "Vertex", file: !1, line: 33, size: 192, align: 32, elements: !116)
+!116 = !{!117, !118}
+!117 = !DIDerivedType(tag: DW_TAG_member, name: "Position", scope: !115, file: !1, line: 35, baseType: !41, size: 96, align: 32)
+!118 = !DIDerivedType(tag: DW_TAG_member, name: "Normal", scope: !115, file: !1, line: 36, baseType: !41, size: 96, align: 32, offset: 96)
+!119 = !DIGlobalVariable(name: "Meshlets", linkageName: "\01?Meshlets@@3V?$StructuredBuffer@UMeshlet@@@@A", scope: !0, file: !1, line: 59, type: !120, isLocal: false, isDefinition: true)
+!120 = !DICompositeType(tag: DW_TAG_class_type, name: "StructuredBuffer<Meshlet>", file: !1, line: 59, size: 128, align: 32, elements: !2, templateParams: !121)
+!121 = !{!122}
+!122 = !DITemplateTypeParameter(name: "element", type: !55)
+!123 = !DIGlobalVariable(name: "UniqueVertexIndices", linkageName: "\01?UniqueVertexIndices@@3UByteAddressBuffer@@A", scope: !0, file: !1, line: 60, type: !124, isLocal: false, isDefinition: true)
+!124 = !DICompositeType(tag: DW_TAG_structure_type, name: "ByteAddressBuffer", file: !1, line: 60, size: 32, align: 32, elements: !2)
+!125 = !DIGlobalVariable(name: "PrimitiveIndices", linkageName: "\01?PrimitiveIndices@@3V?$StructuredBuffer@I@@A", scope: !0, file: !1, line: 61, type: !126, isLocal: false, isDefinition: true)
+!126 = !DICompositeType(tag: DW_TAG_class_type, name: "StructuredBuffer<unsigned int>", file: !1, line: 61, size: 32, align: 32, elements: !2, templateParams: !127)
+!127 = !{!12}
+!128 = !{i32 2, !"Dwarf Version", i32 4}
+!129 = !{i32 2, !"Debug Info Version", i32 3}
+!130 = !{!"clang version 3.7 (tags/RELEASE_370/final)"}
+!131 = !{!"Lib\5CShader\5CMeshletMS.hlsl", !"//*********************************************************\0D\0A//\0D\0A// Copyright (c) Microsoft. All rights reserved.\0D\0A// This code is licensed under the MIT License (MIT).\0D\0A// THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF\0D\0A// ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY\0D\0A// IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR\0D\0A// PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.\0D\0A//\0D\0A//*********************************************************\0D\0A\0D\0A#define ROOT_SIG \22CBV(b0), \5C\0D\0A                  RootConstants(b1, num32bitconstants=2), \5C\0D\0A                  SRV(t0), \5C\0D\0A                  SRV(t1), \5C\0D\0A                  SRV(t2), \5C\0D\0A                  SRV(t3)\22\0D\0A\0D\0Astruct Constants\0D\0A{\0D\0A    float4x4 World;\0D\0A    float4x4 WorldView;\0D\0A    float4x4 WorldViewProj;\0D\0A    uint     DrawMeshlets;\0D\0A};\0D\0A\0D\0Astruct MeshInfo\0D\0A{\0D\0A    uint IndexBytes;\0D\0A    uint MeshletOffset;\0D\0A};\0D\0A\0D\0Astruct Vertex\0D\0A{\0D\0A    float3 Position;\0D\0A    float3 Normal;\0D\0A};\0D\0A\0D\0Astruct VertexOut\0D\0A{\0D\0A    float4 PositionHS   : SV_Position;\0D\0A    float3 PositionVS   : POSITION0;\0D\0A    float3 Normal       : NORMAL0;\0D\0A    uint   MeshletIndex : COLOR0;\0D\0A};\0D\0A\0D\0Astruct Meshlet\0D\0A{\0D\0A    uint VertCount;\0D\0A    uint VertOffset;\0D\0A    uint PrimCount;\0D\0A    uint PrimOffset;\0D\0A};\0D\0A\0D\0AConstantBuffer<Constants> Globals             : register(b0);\0D\0AConstantBuffer<MeshInfo>  meshInfo            : register(b1);\0D\0A\0D\0AStructuredBuffer<Vertex>  Vertices            : register(t0);\0D\0AStructuredBuffer<Meshlet> Meshlets            : register(t1);\0D\0AByteAddressBuffer         UniqueVertexIndices : register(t2);\0D\0AStructuredBuffer<uint>    PrimitiveIndices    : register(t3);\0D\0A\0D\0A\0D\0A/////\0D\0A// Data Loaders\0D\0A\0D\0Auint3 UnpackPrimitive(uint primitive)\0D\0A{\0D\0A    // Unpacks a 10 bits per index triangle from a 32-bit uint.\0D\0A    return uint3(primitive & 0x3FF, (primitive >> 10) & 0x3FF, (primitive >> 20) & 0x3FF);\0D\0A}\0D\0A\0D\0Auint3 GetPrimitive(Meshlet m, uint index)\0D\0A{\0D\0A    return UnpackPrimitive(PrimitiveIndices[m.PrimOffset + index]);\0D\0A}\0D\0A\0D\0Auint GetVertexIndex(Meshlet m, uint localIndex)\0D\0A{\0D\0A    localIndex = m.VertOffset + localIndex;\0D\0A\0D\0A    if (meshInfo.IndexBytes == 4) // 32-bit Vertex Indices\0D\0A    {\0D\0A        return UniqueVertexIndices.Load(localIndex * 4);\0D\0A    }\0D\0A    else // 16-bit Vertex Indices\0D\0A    {\0D\0A        // Byte address must be 4-byte aligned.\0D\0A        uint wordOffset = (localIndex & 0x1);\0D\0A        uint byteOffset = (localIndex / 2) * 4;\0D\0A\0D\0A        // Grab the pair of 16-bit indices, shift & mask off proper 16-bits.\0D\0A        uint indexPair = UniqueVertexIndices.Load(byteOffset);\0D\0A        uint index = (indexPair >> (wordOffset * 16)) & 0xffff;\0D\0A\0D\0A        return index;\0D\0A    }\0D\0A}\0D\0A\0D\0AVertexOut GetVertexAttributes(uint meshletIndex, uint vertexIndex)\0D\0A{\0D\0A    Vertex v = Vertices[vertexIndex];\0D\0A\0D\0A    VertexOut vout;\0D\0A    vout.PositionVS = mul(float4(v.Position, 1), Globals.WorldView).xyz;\0D\0A    vout.PositionHS = mul(float4(v.Position, 1), Globals.WorldViewProj);\0D\0A    vout.Normal = mul(float4(v.Normal, 0), Globals.World).xyz;\0D\0A    vout.MeshletIndex = meshletIndex;\0D\0A\0D\0A    return vout;\0D\0A}\0D\0A\0D\0A\0D\0A[RootSignature(ROOT_SIG)]\0D\0A[NumThreads(128, 1, 1)]\0D\0A[OutputTopology(\22triangle\22)]\0D\0Avoid main(\0D\0A    uint gtid : SV_GroupThreadID,\0D\0A    uint gid : SV_GroupID,\0D\0A    out indices uint3 tris[126],\0D\0A    out vertices VertexOut verts[64]\0D\0A)\0D\0A{\0D\0A    Meshlet m = Meshlets[meshInfo.MeshletOffset + gid];\0D\0A\0D\0A    SetMeshOutputCounts(m.VertCount, m.PrimCount);\0D\0A\0D\0A    if (gtid < m.PrimCount)\0D\0A    {\0D\0A        tris[gtid] = GetPrimitive(m, gtid);\0D\0A    }\0D\0A\0D\0A    if (gtid < m.VertCount)\0D\0A    {\0D\0A        uint vertexIndex = GetVertexIndex(m, gtid);\0D\0A        verts[gtid] = GetVertexAttributes(gid, vertexIndex);\0D\0A    }\0D\0A}\0D\0A"}
+!132 = !{!"Lib\5CShader\5CMeshletMS.hlsl"}
+!133 = !{!"-E", !"main", !"-T", !"ms_6_5", !"/Fo", !"./Lib/Shader/MeshletMS.cso", !"/Od", !"/Zi", !"-Qembed_debug"}
+!134 = !{i32 1, i32 5}
+!135 = !{i32 1, i32 6}
+!136 = !{!"ms", i32 6, i32 5}
+!137 = !{!138, null, !146, null}
+!138 = !{!139, !141, !143, !144}
+!139 = !{i32 0, %"class.StructuredBuffer<Vertex>"* undef, !"Vertices", i32 0, i32 0, i32 1, i32 12, i32 0, !140}
+!140 = !{i32 1, i32 24}
+!141 = !{i32 1, %"class.StructuredBuffer<Meshlet>"* undef, !"Meshlets", i32 0, i32 1, i32 1, i32 12, i32 0, !142}
+!142 = !{i32 1, i32 16}
+!143 = !{i32 2, %struct.ByteAddressBuffer* undef, !"UniqueVertexIndices", i32 0, i32 2, i32 1, i32 11, i32 0, null}
+!144 = !{i32 3, %"class.StructuredBuffer<unsigned int>"* undef, !"PrimitiveIndices", i32 0, i32 3, i32 1, i32 12, i32 0, !145}
+!145 = !{i32 1, i32 4}
+!146 = !{!147, !148}
+!147 = !{i32 0, %hostlayout.Globals* undef, !"Globals", i32 0, i32 0, i32 1, i32 196, null}
+!148 = !{i32 1, %meshInfo* undef, !"meshInfo", i32 0, i32 1, i32 1, i32 8, null}
+!149 = !{i32 0, %struct.MeshInfo undef, !150, %"class.StructuredBuffer<Vertex>" undef, !153, %struct.Vertex undef, !158, %"class.StructuredBuffer<Meshlet>" undef, !161, %struct.Meshlet undef, !165, %"class.StructuredBuffer<unsigned int>" undef, !170, %meshInfo undef, !175, %hostlayout.struct.Constants undef, !177, %hostlayout.Globals undef, !183}
+!150 = !{i32 8, !151, !152}
+!151 = !{i32 6, !"IndexBytes", i32 3, i32 0, i32 7, i32 5}
+!152 = !{i32 6, !"MeshletOffset", i32 3, i32 4, i32 7, i32 5}
+!153 = !{i32 28, !154, !155}
+!154 = !{i32 6, !"h", i32 3, i32 0}
+!155 = !{i32 0, !156}
+!156 = !{!157}
+!157 = !{i32 0, %struct.Vertex undef}
+!158 = !{i32 28, !159, !160}
+!159 = !{i32 6, !"Position", i32 3, i32 0, i32 7, i32 9}
+!160 = !{i32 6, !"Normal", i32 3, i32 16, i32 7, i32 9}
+!161 = !{i32 16, !154, !162}
+!162 = !{i32 0, !163}
+!163 = !{!164}
+!164 = !{i32 0, %struct.Meshlet undef}
+!165 = !{i32 16, !166, !167, !168, !169}
+!166 = !{i32 6, !"VertCount", i32 3, i32 0, i32 7, i32 5}
+!167 = !{i32 6, !"VertOffset", i32 3, i32 4, i32 7, i32 5}
+!168 = !{i32 6, !"PrimCount", i32 3, i32 8, i32 7, i32 5}
+!169 = !{i32 6, !"PrimOffset", i32 3, i32 12, i32 7, i32 5}
+!170 = !{i32 4, !171, !172}
+!171 = !{i32 6, !"h", i32 3, i32 0, i32 7, i32 5}
+!172 = !{i32 0, !173}
+!173 = !{!174}
+!174 = !{i32 0, i32 undef}
+!175 = !{i32 8, !176}
+!176 = !{i32 6, !"meshInfo", i32 3, i32 0}
+!177 = !{i32 196, !178, !180, !181, !182}
+!178 = !{i32 6, !"World", i32 2, !179, i32 3, i32 0, i32 7, i32 9}
+!179 = !{i32 4, i32 4, i32 2}
+!180 = !{i32 6, !"WorldView", i32 2, !179, i32 3, i32 64, i32 7, i32 9}
+!181 = !{i32 6, !"WorldViewProj", i32 2, !179, i32 3, i32 128, i32 7, i32 9}
+!182 = !{i32 6, !"DrawMeshlets", i32 3, i32 192, i32 7, i32 5}
+!183 = !{i32 196, !184}
+!184 = !{i32 6, !"Globals", i32 3, i32 0}
+!185 = !{i32 1, void ()* @main, !186}
+!186 = !{!187}
+!187 = !{i32 0, !2, !2}
+!188 = !{[3 x i32] [i32 0, i32 13, i32 0]}
+!189 = !{void ()* @main, !"main", !190, !137, !200}
+!190 = !{null, !191, null}
+!191 = !{!192, !195, !197, !198}
+!192 = !{i32 0, !"SV_Position", i8 9, i8 3, !193, i8 4, i32 1, i8 4, i32 0, i8 0, !194}
+!193 = !{i32 0}
+!194 = !{i32 3, i32 15}
+!195 = !{i32 1, !"POSITION", i8 9, i8 0, !193, i8 2, i32 1, i8 3, i32 1, i8 0, !196}
+!196 = !{i32 3, i32 7}
+!197 = !{i32 2, !"NORMAL", i8 9, i8 0, !193, i8 2, i32 1, i8 3, i32 2, i8 0, !196}
+!198 = !{i32 3, !"COLOR", i8 5, i8 0, !193, i8 1, i32 1, i8 1, i32 3, i8 0, !199}
+!199 = !{i32 3, i32 1}
+!200 = !{i32 0, i64 17, i32 9, !201}
+!201 = !{!202, i32 64, i32 126, i32 2, i32 0}
+!202 = !{i32 128, i32 1, i32 1}
+!203 = !DILocation(line: 75, column: 28, scope: !52, inlinedAt: !204)
+!204 = distinct !DILocation(line: 130, column: 22, scope: !205)
+!205 = distinct !DILexicalBlock(scope: !206, file: !1, line: 129, column: 5)
+!206 = distinct !DILexicalBlock(scope: !27, file: !1, line: 128, column: 9)
+!207 = !DILocation(line: 121, column: 28, scope: !27)
+!208 = !DILocalVariable(tag: DW_TAG_arg_variable, name: "gid", arg: 2, scope: !27, file: !1, line: 119, type: !30)
+!209 = !DIExpression()
+!210 = !DILocation(line: 119, column: 10, scope: !27)
+!211 = !DILocalVariable(tag: DW_TAG_arg_variable, name: "gtid", arg: 1, scope: !27, file: !1, line: 118, type: !30)
+!212 = !DILocation(line: 118, column: 10, scope: !27)
+!213 = !DILocation(line: 124, column: 35, scope: !27)
+!214 = !DILocation(line: 124, column: 49, scope: !27)
+!215 = !DILocation(line: 124, column: 17, scope: !27)
+!216 = !DILocalVariable(tag: DW_TAG_auto_variable, name: "m", scope: !27, file: !1, line: 124, type: !55)
+!217 = !DIExpression(DW_OP_bit_piece, 0, 32)
+!218 = !DILocation(line: 124, column: 13, scope: !27)
+!219 = !DILocalVariable(tag: DW_TAG_arg_variable, name: "m", arg: 1, scope: !52, file: !1, line: 73, type: !55)
+!220 = !DILocation(line: 73, column: 28, scope: !52, inlinedAt: !204)
+!221 = !DILocalVariable(tag: DW_TAG_arg_variable, name: "m", arg: 1, scope: !64, file: !1, line: 78, type: !55)
+!222 = !DILocation(line: 78, column: 29, scope: !64, inlinedAt: !223)
+!223 = distinct !DILocation(line: 135, column: 28, scope: !224)
+!224 = distinct !DILexicalBlock(scope: !225, file: !1, line: 134, column: 5)
+!225 = distinct !DILexicalBlock(scope: !27, file: !1, line: 133, column: 9)
+!226 = !DIExpression(DW_OP_bit_piece, 32, 32)
+!227 = !DIExpression(DW_OP_bit_piece, 64, 32)
+!228 = !DIExpression(DW_OP_bit_piece, 96, 32)
+!229 = !DILocation(line: 126, column: 5, scope: !27)
+!230 = !DILocation(line: 128, column: 14, scope: !206)
+!231 = !DILocation(line: 128, column: 9, scope: !27)
+!232 = !DILocation(line: 130, column: 22, scope: !205)
+!233 = !DILocalVariable(tag: DW_TAG_arg_variable, name: "index", arg: 2, scope: !52, file: !1, line: 73, type: !30)
+!234 = !DILocation(line: 73, column: 36, scope: !52, inlinedAt: !204)
+!235 = !DILocation(line: 75, column: 58, scope: !52, inlinedAt: !204)
+!236 = !DILocation(line: 75, column: 12, scope: !52, inlinedAt: !204)
+!237 = !DILocalVariable(tag: DW_TAG_arg_variable, name: "primitive", arg: 1, scope: !61, file: !1, line: 67, type: !30)
+!238 = !DILocation(line: 67, column: 28, scope: !61, inlinedAt: !239)
+!239 = distinct !DILocation(line: 75, column: 12, scope: !52, inlinedAt: !204)
+!240 = !DILocation(line: 70, column: 28, scope: !61, inlinedAt: !239)
+!241 = !DILocation(line: 70, column: 48, scope: !61, inlinedAt: !239)
+!242 = !DILocation(line: 70, column: 55, scope: !61, inlinedAt: !239)
+!243 = !DILocation(line: 70, column: 75, scope: !61, inlinedAt: !239)
+!244 = !DILocation(line: 70, column: 82, scope: !61, inlinedAt: !239)
+!245 = !DILocation(line: 70, column: 5, scope: !61, inlinedAt: !239)
+!246 = !DILocation(line: 75, column: 5, scope: !52, inlinedAt: !204)
+!247 = !DILocation(line: 130, column: 20, scope: !205)
+!248 = !DILocation(line: 131, column: 5, scope: !205)
+!249 = !DILocation(line: 133, column: 14, scope: !225)
+!250 = !DILocation(line: 133, column: 9, scope: !27)
+!251 = !DILocation(line: 135, column: 28, scope: !224)
+!252 = !DILocalVariable(tag: DW_TAG_arg_variable, name: "localIndex", arg: 2, scope: !64, file: !1, line: 78, type: !30)
+!253 = !DILocation(line: 78, column: 37, scope: !64, inlinedAt: !223)
+!254 = !DILocation(line: 80, column: 31, scope: !64, inlinedAt: !223)
+!255 = !DILocation(line: 82, column: 18, scope: !256, inlinedAt: !223)
+!256 = distinct !DILexicalBlock(scope: !64, file: !1, line: 82, column: 9)
+!257 = !DILocation(line: 82, column: 29, scope: !256, inlinedAt: !223)
+!258 = !DILocation(line: 82, column: 9, scope: !64, inlinedAt: !223)
+!259 = !DILocation(line: 84, column: 52, scope: !260, inlinedAt: !223)
+!260 = distinct !DILexicalBlock(scope: !256, file: !1, line: 83, column: 5)
+!261 = !DILocation(line: 84, column: 16, scope: !260, inlinedAt: !223)
+!262 = !DILocation(line: 84, column: 9, scope: !260, inlinedAt: !223)
+!263 = !DILocation(line: 89, column: 39, scope: !264, inlinedAt: !223)
+!264 = distinct !DILexicalBlock(scope: !256, file: !1, line: 87, column: 5)
+!265 = !DILocation(line: 89, column: 14, scope: !264, inlinedAt: !223)
+!266 = !DILocalVariable(tag: DW_TAG_auto_variable, name: "wordOffset", scope: !264, file: !1, line: 89, type: !30)
+!267 = !DILocation(line: 90, column: 39, scope: !264, inlinedAt: !223)
+!268 = !DILocation(line: 90, column: 44, scope: !264, inlinedAt: !223)
+!269 = !DILocation(line: 90, column: 14, scope: !264, inlinedAt: !223)
+!270 = !DILocalVariable(tag: DW_TAG_auto_variable, name: "byteOffset", scope: !264, file: !1, line: 90, type: !30)
+!271 = !DILocation(line: 93, column: 26, scope: !264, inlinedAt: !223)
+!272 = !DILocalVariable(tag: DW_TAG_auto_variable, name: "indexPair", scope: !264, file: !1, line: 93, type: !30)
+!273 = !DILocation(line: 93, column: 14, scope: !264, inlinedAt: !223)
+!274 = !DILocation(line: 94, column: 48, scope: !264, inlinedAt: !223)
+!275 = !DILocation(line: 94, column: 33, scope: !264, inlinedAt: !223)
+!276 = !DILocation(line: 94, column: 55, scope: !264, inlinedAt: !223)
+!277 = !DILocation(line: 94, column: 14, scope: !264, inlinedAt: !223)
+!278 = !DILocalVariable(tag: DW_TAG_auto_variable, name: "index", scope: !264, file: !1, line: 94, type: !30)
+!279 = !DILocation(line: 96, column: 9, scope: !264, inlinedAt: !223)
+!280 = !DILocation(line: 98, column: 1, scope: !64, inlinedAt: !223)
+!281 = !DILocation(line: 135, column: 14, scope: !224)
+!282 = !DILocalVariable(tag: DW_TAG_auto_variable, name: "vertexIndex", scope: !224, file: !1, line: 135, type: !30)
+!283 = !DILocation(line: 136, column: 23, scope: !224)
+!284 = !DILocalVariable(tag: DW_TAG_arg_variable, name: "vertexIndex", arg: 2, scope: !67, file: !1, line: 100, type: !30)
+!285 = !DILocation(line: 100, column: 55, scope: !67, inlinedAt: !286)
+!286 = distinct !DILocation(line: 136, column: 23, scope: !224)
+!287 = !DILocalVariable(tag: DW_TAG_arg_variable, name: "meshletIndex", arg: 1, scope: !67, file: !1, line: 100, type: !30)
+!288 = !DILocation(line: 100, column: 36, scope: !67, inlinedAt: !286)
+!289 = !DILocation(line: 102, column: 16, scope: !67, inlinedAt: !286)
+!290 = !DILocalVariable(tag: DW_TAG_auto_variable, name: "v", scope: !67, file: !1, line: 102, type: !115)
+!291 = !DILocation(line: 102, column: 12, scope: !67, inlinedAt: !286)
+!292 = !DIExpression(DW_OP_bit_piece, 128, 32)
+!293 = !DIExpression(DW_OP_bit_piece, 160, 32)
+!294 = !DILocation(line: 105, column: 58, scope: !67, inlinedAt: !286)
+!295 = !DILocation(line: 105, column: 23, scope: !67, inlinedAt: !286)
+!296 = !DILocation(line: 105, column: 21, scope: !67, inlinedAt: !286)
+!297 = !DILocalVariable(tag: DW_TAG_arg_variable, name: "vout", arg: 0, scope: !67, file: !1, line: 104, type: !37)
+!298 = !DILocation(line: 104, column: 15, scope: !67, inlinedAt: !286)
+!299 = !DIExpression(DW_OP_bit_piece, 192, 32)
+!300 = !DILocation(line: 106, column: 58, scope: !67, inlinedAt: !286)
+!301 = !DILocation(line: 106, column: 23, scope: !67, inlinedAt: !286)
+!302 = !DILocation(line: 106, column: 21, scope: !67, inlinedAt: !286)
+!303 = !DILocation(line: 107, column: 52, scope: !67, inlinedAt: !286)
+!304 = !DILocation(line: 107, column: 19, scope: !67, inlinedAt: !286)
+!305 = !DILocation(line: 107, column: 17, scope: !67, inlinedAt: !286)
+!306 = !DIExpression(DW_OP_bit_piece, 224, 32)
+!307 = !DIExpression(DW_OP_bit_piece, 256, 32)
+!308 = !DIExpression(DW_OP_bit_piece, 288, 32)
+!309 = !DILocation(line: 108, column: 23, scope: !67, inlinedAt: !286)
+!310 = !DIExpression(DW_OP_bit_piece, 320, 32)
+!311 = !DILocation(line: 110, column: 5, scope: !67, inlinedAt: !286)
+!312 = !DILocation(line: 137, column: 5, scope: !224)
+!313 = !DILocation(line: 138, column: 1, scope: !27)

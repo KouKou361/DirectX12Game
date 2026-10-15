@@ -1,0 +1,9 @@
+diff a/Lib/Lib_Graphics.cpp b/Lib/Lib_Graphics.cpp	(rejected hunks)
+@@ -370,7 +370,6 @@
+ void Graphics::CreateRTV(RenderTargetViewResource* rtvResource, const DXGI_FORMAT& rtvFormat)//�����_�[�^�[�Q�b�g�̍쐬
+ {
+ 
+-	
+ 	HRESULT hr = S_OK;
+ 
+ 	rtvResource->rtv_descriptor = GetDescriptorHeapRTV()->GetUnusedDescriptor();
